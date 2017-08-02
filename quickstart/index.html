@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Quick Start - Kata Docs</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../extra.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">Kata Docs</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                    <li class="active">
+                        <a href="./">Quick Start</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="..">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="prev" >
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#quick-start">Quick Start</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#hello-bot">Hello Bot</a></li>
+            <li><a href="#example-create-and-setup-bot-official-account-line">EXAMPLE: Create and Setup Bot Official Account (LINE)</a></li>
+        <li class="main "><a href="#pizza-bot-line">Pizza Bot (LINE)</a></li>
+            <li><a href="#step-1-differentiate-greet-and-cant-understand-input">Step 1: Differentiate greet, and can't understand input</a></li>
+            <li><a href="#step-2-bot-can-understand-users-order">Step 2: Bot can understand user's order</a></li>
+            <li><a href="#step-3-modify-the-text-menu-into-carousel">Step 3: Modify the text menu into carousel</a></li>
+            <li><a href="#step-4-add-flow-until-confirmation-of-the-the-order">Step 4: Add flow until confirmation of the the order</a></li>
+            <li><a href="#step-5-modify-confirmation-answer-to-button">Step 5: Modify confirmation answer to button</a></li>
+            <li><a href="#step-6-using-line-sticker-as-bot-response">Step 6: Using LINE Sticker as bot response</a></li>
+            <li><a href="#step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="quick-start">Quick Start</h1>
+<h2 id="installation">Installation</h2>
+<h3 id="try-kata-platform">Try Kata Platform</h3>
+<p>Install Kata-CLI at your device, using this command:</p>
+<pre><code>$ npm install -g kata-cli #now you can use command 'kata' globally
+</code></pre>
+
+<h3 id="login">Login</h3>
+<p>Login using your account as user</p>
+<pre><code>$ kata login user -u &lt;username&gt;
+password: &lt;password&gt;
+</code></pre>
+
+<p>Login  using your account as team</p>
+<pre><code>$ kata login team &lt;teamName&gt; -u &lt;username&gt;
+password: &lt;password&gt;
+</code></pre>
+
+<p>Login using token</p>
+<pre><code>$ kata login user -t &lt;token&gt;
+</code></pre>
+
+<h2 id="hello-bot">Hello Bot</h2>
+<p>Before started
+<strong>Simple explanation about the fundamental components of the bot consists of:</strong></p>
+<ul>
+<li>nlu's : the natural language understanding/model, defined to be used in the bot</li>
+<li>intents : is list of purpose defined to understand user intention</li>
+<li>states : is the stages/procedure of interaction with user</li>
+<li>actions : is list of action defined to perform in each state </li>
+<li>methods : case of more complicated computation/action needed. In javascript language</li>
+</ul>
+<h3 id="init-project">Init project</h3>
+<p>Create folder for your bot project, and init your bot there.</p>
+<pre><code>$ mkdir &lt;bot-folder&gt;
+$ cd &lt;bot-folder&gt;
+$ kata init &lt;bot-id&gt; &lt;bot-name&gt; [version] #login not required to init bot
+</code></pre>
+
+<p>this will generate folder with <strong>nlu.yml, bot.yml, message.yml, flows folder</strong>
+example:</p>
+<pre><code>schema: kata.ai/schema/kata-ml/1.0
+name: &lt;bot-name&gt;
+desc: Bot Description
+version: &lt;bot-version&gt; #example 0.0.1
+flows:
+    fallback: $include(./flows/fallback.yml)
+config:
+    messages: $include(./messages.yml)
+    maxRecursion: 10
+nlus: $include(./nlu.yml)
+id: &lt;bot-id&gt;
+</code></pre>
+
+<h3 id="writing-flow">Writing Flow</h3>
+<p>Modify <strong>nlu.yml</strong>, to add handler for the next intent</p>
+<pre><code>confidenceLevel:
+    type: method
+    method: confidenceLevel
+
+# nlu greet will define input keyword hello, hallo, hai, and hi as hello
+greet:
+    type: keyword
+    options:
+        keywords:
+            hello:
+                - hello
+                - hallo
+                - hai
+                - hi
+</code></pre>
+
+<p>Modify intents at <strong>flow/fallback.yml</strong>. 
+Make 'hi' intents to use nlu 'greet' instead.</p>
+<pre><code>hi:
+    initial: true
+    type: text
+    classifier:
+        nlu: greet
+</code></pre>
+
+<p><strong>Flow Explanation</strong></p>
+<ul>
+<li>Intent will have value of 'hi' if input is caught by 'greet' NLU, and 'dunno' if no other intent caught by its classifier ('fallback: true' is like the default)</li>
+<li>After going to intents, next step is to go to states which have the value 'initial: true'.</li>
+<li>Case the input caught by 'hi' intents ('hello', hallo, etc).
+    'sayHi' transitions condition will be fulfilled, then at 'sayHi' transitions 'sayHi' actions will give text output from messages.yml with templates/sayHi's value</li>
+<li>Case the input not caught by any intent (will have 'dunno' as its intents).
+    'sorry' transitions condition as the default transitions from 'init' will be fulfilled, then at 'sorry' transitions 'saySorry' actions will give text output from messages.yml with templates/saySorry's value</li>
+</ul>
+<h3 id="push-your-bot">Push your Bot</h3>
+<pre><code>$ kata push --rev &lt;patch | minor | major&gt;
+</code></pre>
+
+<h3 id="deployment">Deployment</h3>
+<pre><code>$ kata deploy &lt;botId&gt; &lt;deploymentName&gt; [version]
+</code></pre>
+
+<p>NOTE: Repeat push and deployment each time you want to update your bot at the messaging application</p>
+<h3 id="adding-channel">Adding Channel</h3>
+<pre><code>$ kata add-channel &lt;botId&gt; &lt;deploymentName&gt; &lt;channelName&gt; : ChannelId
+type: &lt;line | fbmessenger&gt;
+token: &lt;channel access token&gt;
+refreshToken : [refresToken] # may empty
+secret: &lt;channel secret&gt;
+url: &lt;url&gt; # Example: 'https://api.line.me' for LINE
+</code></pre>
+
+<p>NOTE: adding channel only required <em>ONCE</em></p>
+<h3 id="adding-webhook">Adding webhook</h3>
+<p>Setup webhook into url:</p>
+<pre><code>https://kanal.kata.ai/receive_message/{channelId}
+</code></pre>
+
+<p>NOTE: channelId generated from kata deployment-addChannel</p>
+<h2 id="example-create-and-setup-bot-official-account-line">EXAMPLE: Create and Setup Bot Official Account (LINE)</h2>
+<ol>
+<li>Open Line Business web page</li>
+<li>Choose Messaging API, Start Using Developer Trial</li>
+<li>Fill required information</li>
+<li>Enable API</li>
+<li>Choose Settings →Bot Settings, Allow use webhooks and open LINE Developers</li>
+<li>Don't forget to add Webhook URL</li>
+</ol>
+<h1 id="pizza-bot-line">Pizza Bot (LINE)</h1>
+<h2 id="step-1-differentiate-greet-and-cant-understand-input">Step 1: Differentiate greet, and can't understand input</h2>
+<h3 id="step-11-defining-nlu">Step 1.1: Defining nlu</h3>
+<p>add this in <strong>nlu.yml</strong></p>
+<pre><code># model for entity recognition (example: person name, places, etc)
+ner:
+  type: verstandTagger
+    options:
+      model: dcaca5ae-be7f-42f2-a6a1-2b250d4336fd
+
+# model for question, instruction, statement &amp; greeting (qisg)        
+qisg:
+  type: verstandClassifier
+    options:
+      model: cb58d784-9e87-40d5-bae1-6077b934c061    
+
+# nlu for YES or NO statement
+yesno:
+  type: verstandClassifier
+    options:
+      model: b7df76e5-b95d-4925-9f86-2796ea85403a
+</code></pre>
+
+<h3 id="step-12-defining-flows">Step 1.2: Defining flows</h3>
+<p>Modify <em>fallback.yml</em></p>
+<pre><code># case no other flow's intent caught something
+fallback: true
+intents:
+  fallbackIntent:
+      fallback: true
+
+states:
+  init:
+    initial: true
+    transitions:
+      init:
+        fallback: true
+    action:
+      name: fallbackAction
+
+actions:
+  fallbackAction:
+    type: text
+    options:
+      text: &quot;Maaf, saya tidak mengerti.&quot;
+</code></pre>
+
+<p>Create <em>welcome.yml</em></p>
+<pre><code>priority: 9
+intents:
+    greeting:
+        initial: true
+        type: text
+        classifier:
+            nlu: qisg
+            match: greeting
+        priority: 10
+
+states:
+    init:
+        initial: true
+        transitions:
+          greet: 
+            condition: &quot;intent == 'greeting'&quot;
+
+    greet:
+        end: true
+
+        # Normally it is tedious if we have to define a transition to a state that 
+        # is available in every state. e.g. Cancel state. To mitigate this we can define 
+        # a floating transition. The system will automatically attach this transition in 
+        # every state.
+        float:
+            fallback: true
+        action:
+            - name: greetPerson
+              condition: &quot;!context.greetCount&quot;
+            - name: greetAgain
+              condition: &quot;context.greetCount &gt;= 1&quot;
+
+        # Specify mapping or method to be executed when transition is started
+        # create context.greeCount or do increment
+        transit:
+            context.greetCount: &quot;intent == 'greeting' ? (context.greetCount || 0) + 1 : 0&quot;
+
+actions:
+    greetAgain:
+        type: text
+        options:
+            text: &quot;Hai mulu, buruan pesen dong&quot;
+
+    greetPerson:
+        type: text
+        options:
+            text: &quot;Halo pizza bot disini&quot;
+</code></pre>
+
+<p>Modify bot.yml</p>
+<pre><code># add flow of welcoming user
+flows:
+   welcome: $include(./flows/welcome.yml)
+   fallback: $include(./flows/fallback.yml)
+</code></pre>
+
+<p>Now your bot able to tell if user is greeting, bot will response that it doesn't understand if user input anything other than greeting.</p>
+<h2 id="step-2-bot-can-understand-users-order">Step 2: Bot can understand user's order</h2>
+<p>Add nlu at <em>nlu.yml.</em></p>
+<pre><code># nlu for order a pizza based by keywords
+order:
+  type: keyword
+    options:
+      keywords:
+        pizzaOrder:
+          - pesan
+          - pesen
+          - beli
+          - pesen pizza
+          - pizza dong
+          - pizza
+</code></pre>
+
+<p>now create <strong>order.yml </strong>inside folder flows</p>
+<pre><code>intents:
+  orderCommand:
+    initial: true
+    type: text
+    classifier:
+      nlu: order
+      match: pizzaOrder
+
+states:
+  init:
+    initial: true
+    action:
+      - name: pizzaOptions
+      - name: askOptions
+    transitions:
+      init:
+        fallback: true
+
+actions:
+  pizzaOptions:
+    type: text
+    options:
+      text: 'Kami punya pilihan menu:\n 1)Peperoni\n 2)Ronipepe'
+
+  askOptions:
+    type: text
+    options:
+      text: 'Mau yang mana?'
+</code></pre>
+
+<p>dont forget to modify flows in <strong>bot.yml</strong></p>
+<pre><code>flows:
+    welcome: $include(./flows/welcome.yml)
+    order: $include(./flows/order.yml) #add this line of code, to add order.yml into bot flow
+    fallback: $include(./flows/fallback.yml)
+</code></pre>
+
+<p>Now the bot can have this following of conversation:</p>
+<pre><code>$ user: 'Hai'
+- bot: 'Halo pizza bot disini'
+$ user: 'pesan pizza'
+- bot: 'Kami punya pilihan menu:\n 1)Peperoni\n 2)Ronipepe' 
+- bot: 'Mau yang mana?'
+$ user: 'Halo'
+- bot: 'Hai mulu, buruan pesen dong'
+</code></pre>
+
+<h2 id="step-3-modify-the-text-menu-into-carousel">Step 3: Modify the text menu into carousel</h2>
+<p>now modify <strong>order.yml</strong> by adding pizzaOptions in actions</p>
+<pre><code># Example of hard-coded carousel
+pizzaOptions:
+    type: &quot;template&quot;
+    options:
+        type: &quot;carousel&quot;
+        items:
+            - text: 'untuk penggemar bola pepe dan roni'
+              title: 'Pepperoni'
+              thumbnailImageUrl: &lt;https image url&gt;
+              actions:
+                - type: &quot;postback&quot;
+                  label: 'Pepperoni'
+                  payload: 
+                    type: pizza
+                    pizza: pepperoni
+            - text: 'untuk pecinta ayam. Eaaaa'
+              title: 'Chick Lover'
+              thumbnailImageUrl: &lt;https image url&gt;
+              actions:
+                - type: &quot;postback&quot;
+                  label: 'Chick Lover'
+                  payload: 
+                    type: pizza
+                    pizza: chicklover
+</code></pre>
+
+<p>Now it should show carousel of menu instead of only text.</p>
+<h3 id="step-31-use-the-input-from-carousel">Step 3.1: Use the input from carousel.</h3>
+<p>Add intents at <em>order.yml.</em></p>
+<pre><code>  # This will prevent intent caught by *fallbackIntent* at *fallback.yml*
+  pizzaChosen:
+    initial: true
+    type: data
+    condition: payload.type == 'pizza'
+
+  reenter:
+    type: command
+    condition: content == &quot;reenter&quot;
+</code></pre>
+
+<p>Add intents at <em>welcome.yml</em></p>
+<pre><code>reenter:
+  type: command
+  condition: content == &quot;reenter&quot; 
+</code></pre>
+
+<p>remove the greet state and modify the init state</p>
+<pre><code>states:
+    init:
+        initial: true
+        transit:
+          context.greetCount: &quot;intent == 'greeting' ? (context.greetCount || 0) + 1 : 0&quot;
+        action:
+            - name: greetWOPerson
+              condition: &quot;!context.greetCount&quot;
+            - name: greetAgain
+              condition: &quot;context.greetCount &gt;= 1&quot;
+        float:
+            fallback: true
+</code></pre>
+
+<p>Modify <em>init </em>states and add 2 other states at <em>order.yml.</em></p>
+<pre><code>  init:
+    initial: true
+    transitions:
+      showPizza:
+        condition: &quot;intent == 'orderCommand'&quot;
+      init:
+        fallback: true
+
+  showPizza:
+    action:
+      - name: pizzaOptions
+      - name: askOptions
+    transitions:
+      confirmPizza:
+        condition: &quot;intent == 'pizzaChosen'&quot;
+      showPizza:
+        fallback: true
+
+  confirmPizza:
+    end: true
+    action:
+      - name: confirmPizza
+    transitions:
+      confirmPizza:
+        fallback: true
+</code></pre>
+
+<p>Add actions di <em>order.yml.</em></p>
+<pre><code>  confirmPizza:
+    type: text
+    options:
+      text: &quot;Jadi benar pesanannya adalah $(payload.pizza)?&quot;
+</code></pre>
+
+<p>The bot can now understand the user input from carousel. <strong>payload</strong> is temporary, after some transitions it will have no value stored. later on we need to assign it to a <strong>context</strong></p>
+<h2 id="step-4-add-flow-until-confirmation-of-the-the-order">Step 4: Add flow until confirmation of the the order</h2>
+<p>Add nlu at <em>nlu.yml</em></p>
+<pre><code>quantity:
+    type: regex
+    options:
+        regex: &quot;[1-9]&quot;
+</code></pre>
+
+<p>Add intents at <em>order.yml</em></p>
+<pre><code>  pizzaQntty: # to caught 
+    type: text
+    classifier:
+      nlu: quantity
+    attributes:
+      quantity:
+        nlu: quantity
+</code></pre>
+
+<p>Add and restructure the states in order.yml</p>
+<pre><code>showPizza:
+    action:
+      - name: pizzaOptions
+      - name: askOptions
+    transitions:
+      pizzaQuantity:
+        condition: &quot;intent == 'pizzaChosen'&quot;
+        mapping: 
+          context.pizza: &quot;payload.pizza&quot; # remember payload.pizza for the whole session
+      showPizza:
+        fallback: true
+
+  pizzaQuantity:
+    action:
+      - name: askQuantity
+    transitions:
+      confirmPizza:
+        condition: &quot;intent == 'pizzaQntty'&quot;
+        mapping:
+          context.quantity: &quot;attributes.quantity&quot;
+          context.answer: &quot;null&quot;
+      pizzaQuantity:
+        fallback: true
+
+  confirmPizza:
+    action:
+      - name: confirmPizza
+    transitions:
+      done:
+        fallback: true
+    transit:
+        context.answer: &quot;intent&quot;
+
+  done:
+    end: true
+    action:
+      - name: sayThanks
+        condition: &quot;context.answer == 'yes'&quot;
+      - name: cancelOrder
+        condition: &quot;context.answer == 'no'&quot;
+</code></pre>
+
+<p>Add and modify actions at order.yml too</p>
+<pre><code> askQuantity:
+    type: text
+    options:
+      text: 'Mau pesan berapa banyak? (Min.1 Max.9)'
+
+  confirmPizza:
+    type: text
+    options:
+      text: &quot;Jadi benar pesanannya adalah $(context.pizza)?&quot;
+
+  cancelOrder:
+    type: text
+    options:
+      text: &quot;Baiklah, silahkan pesan lagi di lain waktu&quot;
+
+  sayThanks:
+    type: text
+    options:
+      text: &quot;Terimakasih sudah memesan :)&quot;
+</code></pre>
+
+<h2 id="step-5-modify-confirmation-answer-to-button">Step 5: Modify confirmation answer to button</h2>
+<p>modify the <strong>order.yml</strong> by adding the yesNoButton in actions</p>
+<pre><code>  yesNoButton:
+    type: template
+    options:
+      type: button
+      items:
+        text: &quot;Benar pesanannya adalah $(context.pizza) sebanyak $(context.quantity)?&quot;
+        actions:
+          - type: postback
+            label: Ya
+            payload:
+              type: confirm
+              confirm: &quot;yes&quot;
+          - type: postback
+            label: Tidak
+            payload:
+              type: confirm
+              confirm: &quot;no&quot;
+</code></pre>
+
+<h3 id="step-51-use-the-input-from-button">Step 5.1: Use the input From Button</h3>
+<p>Add intent at <em>order.yml</em></p>
+<pre><code>  yesno:
+    type: data
+    condition: payload.type == 'confirm'
+</code></pre>
+
+<p>modify the <strong>confirmPizza</strong> and <strong>init</strong> state</p>
+<pre><code> init:
+    initial: true
+    action:
+      - name: sayThanks
+        condition: &quot;context.answer == 'yes'&quot;
+      - name: cancelOrder
+        condition: &quot;context.answer == 'no'&quot;
+    transitions:
+      showPizza:
+        condition: &quot;intent == 'orderCommand'&quot;
+      init:
+        fallback: true
+
+  confirmPizza:
+    action:
+      - name: yesNoButton
+    transitions:
+      init:
+        fallback: true
+        mapping:
+          context.answer: &quot;payload.confirm&quot;
+    transit:
+        context.answer: &quot;intent&quot;  
+</code></pre>
+
+<p>after confirmation, at confirmPizza state it will return to init state and ready for another 'pesan' command.</p>
+<h2 id="step-6-using-line-sticker-as-bot-response">Step 6: Using LINE Sticker as bot response</h2>
+<p>add action in <strong>order.yml</strong></p>
+<pre><code>  sayThanksSticker:
+    type: template
+    options:
+    type: sticker
+    items:
+      stickerId: '3'
+      packageId: '1'
+</code></pre>
+
+<p>modify init state in <strong>order.yml</strong></p>
+<pre><code>  init:
+    initial: true
+    action:
+      - name: sayThanks
+        condition: &quot;context.answer == 'yes'&quot;
+      - name: sayThanksSticker
+        condition: &quot;context.answer == 'yes'&quot;
+      - name: cancelOrder
+        condition: &quot;context.answer == 'no'&quot;
+    transitions:
+      showPizza:
+        condition: &quot;intent == 'orderCommand'&quot;
+      init:
+        fallback: true
+</code></pre>
+
+<h2 id="step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</h2></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
