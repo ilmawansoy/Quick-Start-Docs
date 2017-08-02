@@ -1,0 +1,5 @@
+site_name: Kata Docs
+pages:
+  - Home: index.md
+  - Quick Start: quickstart.md
+theme: null
