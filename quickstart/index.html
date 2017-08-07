@@ -1,106 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Quick Start - Kata Docs</title>
-        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="../css/highlight.css">
-        <link href="../extra.css" rel="stylesheet">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-	
-	<script src="../js/jquery-1.10.2.min.js"></script>
-        <script src="../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../js/highlight.pack.js"></script> 
+        <title>Kata Docs</title>
+        <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
     </head>
-
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+    
+    <nav class="nav-style">
+        <div class="nav-wrapper container">
+            
+<ul class="left">
+    <li>
+        <h4 class="brand">KataDocs</h4>
+    </li>
+    
+    
+    <li class="">
+        <a href="..">Home</a>
+    </li>
+    
+    
+    
+    <li class="current">
+        <a href="./">Quick Start</a>
+    </li>
+    
+    
+</ul>
+    
+        </div>
+    </nav>
+    
     <body>
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="..">Kata Docs</a>
-        </div>
-
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-                <!-- Main navigation -->
-                <ul class="nav navbar-nav">
-                    <li >
-                        <a href="..">Home</a>
-                    </li>
-                    <li class="active">
-                        <a href="./">Quick Start</a>
-                    </li>
-                </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                        <i class="fa fa-search"></i> Search
-                    </a>
-                </li>
-                    <li >
-                        <a rel="next" href="..">
-                            <i class="fa fa-arrow-left"></i> Previous
-                        </a>
-                    </li>
-                    <li class="disabled">
-                        <a rel="prev" >
-                            Next <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="../js/materialize.min.js"></script>
+        <script type="text/javascript" src="../js/script.js"></script>
         <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+          <div class="row">
+            <div class="sidenavbar col s3 m3">
+              <div class="bs-sidebar hidden-print affix well" role="complementary" id="scrollbar-style">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#quick-start">Quick Start</a></li>
-            <li><a href="#installation">Installation</a></li>
-            <li><a href="#hello-bot">Hello Bot</a></li>
-            <li><a href="#example-create-and-setup-bot-official-account-line">EXAMPLE: Create and Setup Bot Official Account (LINE)</a></li>
-        <li class="main "><a href="#pizza-bot-line">Pizza Bot (LINE)</a></li>
-            <li><a href="#step-1-differentiate-greet-and-cant-understand-input">Step 1: Differentiate greet, and can't understand input</a></li>
-            <li><a href="#step-2-bot-can-understand-users-order">Step 2: Bot can understand user's order</a></li>
-            <li><a href="#step-3-modify-the-text-menu-into-carousel">Step 3: Modify the text menu into carousel</a></li>
-            <li><a href="#step-4-add-flow-until-confirmation-of-the-the-order">Step 4: Add flow until confirmation of the the order</a></li>
-            <li><a href="#step-5-modify-confirmation-answer-to-button">Step 5: Modify confirmation answer to button</a></li>
-            <li><a href="#step-6-using-line-sticker-as-bot-response">Step 6: Using LINE Sticker as bot response</a></li>
-            <li><a href="#step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</a></li>
+    
+        <li class="first-level active"><a href="#quick-start">Quick Start</a></li>
+        
+            <li class="second-level"><a href="#installation">Installation</a></li>
+            
+                <li class="third-level"><a href="#try-kata-platform">Try Kata Platform</a></li>
+            
+                <li class="third-level"><a href="#login">Login</a></li>
+            
+        
+            <li class="second-level"><a href="#hello-bot">Hello Bot</a></li>
+            
+                <li class="third-level"><a href="#init-project">Init project</a></li>
+            
+                <li class="third-level"><a href="#writing-flow">Writing Flow</a></li>
+            
+                <li class="third-level"><a href="#push-your-bot">Push your Bot</a></li>
+            
+                <li class="third-level"><a href="#deployment">Deployment</a></li>
+            
+                <li class="third-level"><a href="#adding-channel">Adding ChanneL</a></li>
+            
+                <li class="third-level"><a href="#adding-webhook">Adding webhook</a></li>
+            
+        
+            <li class="second-level"><a href="#example-create-and-setup-bot-official-account-line">EXAMPLE: Create and Setup Bot Official Account (LINE)</a></li>
+            
+        
+    
+        <li class="first-level "><a href="#pizza-bot-line">Pizza Bot (LINE)</a></li>
+        
+            <li class="second-level"><a href="#step-1-differentiate-greet-and-cant-understand-input">Step 1: Differentiate greet, and can't understand input</a></li>
+            
+                <li class="third-level"><a href="#step-11-defining-nlu">Step 1.1: Defining nlu</a></li>
+            
+                <li class="third-level"><a href="#step-12-defining-flows">Step 1.2: Defining flows</a></li>
+            
+        
+            <li class="second-level"><a href="#step-2-bot-can-understand-users-order">Step 2: Bot can understand user's order</a></li>
+            
+        
+            <li class="second-level"><a href="#step-3-modify-the-text-menu-into-carousel">Step 3: Modify the text menu into carousel</a></li>
+            
+                <li class="third-level"><a href="#step-31-use-the-input-from-carousel">Step 3.1: Use the input from carousel.</a></li>
+            
+        
+            <li class="second-level"><a href="#step-4-add-flow-until-confirmation-of-the-the-order">Step 4: Add flow until confirmation of the the order</a></li>
+            
+        
+            <li class="second-level"><a href="#step-5-modify-confirmation-answer-to-button">Step 5: Modify confirmation answer to button</a></li>
+            
+                <li class="third-level"><a href="#step-51-use-the-input-from-button">Step 5.1: Use the input From Button</a></li>
+            
+        
+            <li class="second-level"><a href="#step-6-using-line-sticker-as-bot-response">Step 6: Using LINE Sticker as bot response</a></li>
+            
+        
+            <li class="second-level"><a href="#step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</a></li>
+            
+        
+    
     </ul>
-</div></div>
-                <div class="col-md-9" role="main">
+</div>
+            </div>  
+            <div class="col s9 m9 main-content">
+              
 
 <h1 id="quick-start">Quick Start</h1>
 <h2 id="installation">Installation</h2>
 <h3 id="try-kata-platform">Try Kata Platform</h3>
 <p>Install Kata-CLI at your device, using this command:</p>
-<pre><code>$ npm install -g kata-cli #now you can use command 'kata' globally
+<pre><code>$ npm install -g kata-cli
 </code></pre>
 
+<p>now you can use command 'kata' globally</p>
 <h3 id="login">Login</h3>
 <p>Login using your account as user</p>
 <pre><code>$ kata login user -u &lt;username&gt;
@@ -193,8 +217,8 @@ Make 'hi' intents to use nlu 'greet' instead.</p>
 </code></pre>
 
 <p>NOTE: Repeat push and deployment each time you want to update your bot at the messaging application</p>
-<h3 id="adding-channel">Adding Channel</h3>
-<pre><code>$ kata add-channel &lt;botId&gt; &lt;deploymentName&gt; &lt;channelName&gt; : ChannelId
+<h3 id="adding-channel">Adding ChanneL</h3>
+<pre><code>$ kata deployment-addChannel &lt;botId&gt; &lt;deploymentName&gt; &lt;channelName&gt; : ChannelId
 type: &lt;line | fbmessenger&gt;
 token: &lt;channel access token&gt;
 refreshToken : [refresToken] # may empty
@@ -387,6 +411,7 @@ $ user: 'Halo'
 - bot: 'Hai mulu, buruan pesen dong'
 </code></pre>
 
+<p>[Image: https://yesbossnow.quip.com/-/blob/GQRAAAloz86/8V3pjcHpp1aYac1tg63gdQ]</p>
 <h2 id="step-3-modify-the-text-menu-into-carousel">Step 3: Modify the text menu into carousel</h2>
 <p>now modify <strong>order.yml</strong> by adding pizzaOptions in actions</p>
 <pre><code># Example of hard-coded carousel
@@ -417,6 +442,7 @@ pizzaOptions:
 
 <p>Now it should show carousel of menu instead of only text.</p>
 <h3 id="step-31-use-the-input-from-carousel">Step 3.1: Use the input from carousel.</h3>
+<p>New intent needed to be able to catch input from carousel. Which the type is data, and payload content used to identify which carousel is being used (in case if there are more than 1 carousel or other input categorized as type data).</p>
 <p>Add intents at <em>order.yml.</em></p>
 <pre><code>  # This will prevent intent caught by *fallbackIntent* at *fallback.yml*
   pizzaChosen:
@@ -485,8 +511,10 @@ pizzaOptions:
       text: &quot;Jadi benar pesanannya adalah $(payload.pizza)?&quot;
 </code></pre>
 
-<p>The bot can now understand the user input from carousel. <strong>payload</strong> is temporary, after some transitions it will have no value stored. later on we need to assign it to a <strong>context</strong></p>
+<p>The bot can now understand the user input from carousel. <strong>payload</strong> is temporary, after some transitions it will have no value stored. later on we need to assign it to a <strong>context</strong>
+[Image: https://yesbossnow.quip.com/-/blob/GQRAAAloz86/i8kqyjGDuREkYi4X50Z9kw]</p>
 <h2 id="step-4-add-flow-until-confirmation-of-the-the-order">Step 4: Add flow until confirmation of the the order</h2>
+<p>Two state is added in this step, to know how many pizza that the user want to order and confirm if the user already order the right one. After confirmation the state will come back to initial state so the user can start order again.</p>
 <p>Add nlu at <em>nlu.yml</em></p>
 <pre><code>quantity:
     type: regex
@@ -495,7 +523,7 @@ pizzaOptions:
 </code></pre>
 
 <p>Add intents at <em>order.yml</em></p>
-<pre><code>  pizzaQntty: # to caught 
+<pre><code>  pizzaQntty: 
     type: text
     classifier:
       nlu: quantity
@@ -569,6 +597,7 @@ pizzaOptions:
       text: &quot;Terimakasih sudah memesan :)&quot;
 </code></pre>
 
+<p>[Image: https://yesbossnow.quip.com/-/blob/GQRAAAloz86/QucsZrePlyV2fgDPcnxQyw]</p>
 <h2 id="step-5-modify-confirmation-answer-to-button">Step 5: Modify confirmation answer to button</h2>
 <p>modify the <strong>order.yml</strong> by adding the yesNoButton in actions</p>
 <pre><code>  yesNoButton:
@@ -623,8 +652,10 @@ pizzaOptions:
         context.answer: &quot;intent&quot;  
 </code></pre>
 
-<p>after confirmation, at confirmPizza state it will return to init state and ready for another 'pesan' command.</p>
+<p>after confirmation, at confirmPizza state it will return to init state and ready for another 'pesan' command.
+[Image: https://yesbossnow.quip.com/-/blob/GQRAAAloz86/VJm-EoNrM7SzeRoc7VAm4g]</p>
 <h2 id="step-6-using-line-sticker-as-bot-response">Step 6: Using LINE Sticker as bot response</h2>
+<p>In this step we want the bot to be able to give response to user with sticker, to identify what sticker will be used the packageId and stickerId is needed as argument in actions.</p>
 <p>add action in <strong>order.yml</strong></p>
 <pre><code>  sayThanksSticker:
     type: template
@@ -649,42 +680,57 @@ pizzaOptions:
       showPizza:
         condition: &quot;intent == 'orderCommand'&quot;
       init:
-        fallback: true
+        fallback: true        
 </code></pre>
 
-<h2 id="step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</h2></div>
-        </div>
+<p>[Image: https://yesbossnow.quip.com/-/blob/GQRAAAloz86/UvzqveDQpMoWw92ZQSeWlw]</p>
+<h2 id="step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</h2>
+<p>In this step we want to create carousel but not each content is written specifically by developer, instead we can use JSON Object as its input.</p>
+<p>Create methods in <strong>order.yml</strong> to simulate carousel which use JSON Object as input. The JSON Object example will be saved at <em>context.arr</em> when transit called <em>jalaninArr</em> method.</p>
+<pre><code>methods:
+  jalaninArr(ctx): &quot;
+      ctx.context.arr = [{'item':'Chicken', 'desc':'chick lover'}, {'item':'Pepperoni', 'desc':'pepe rooney'}];
+      return ctx;
+  &quot;
+</code></pre>
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>var base_url = '..';</script>
-        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
-        <script src="../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
+<p>In state <em>init</em> at <strong>order.yml</strong>, add <em>transit </em>so there will be <em>context</em> which contain JSON Object example</p>
+<pre><code>    transit: jalaninArr
+</code></pre>
 
+<p>Add <em>actions </em>at <strong>order.yml</strong>, dynamic carousel actions which use JSON Object from methods <em>jalaninArr</em></p>
+<pre><code>  pizzaOptionsDynamic:
+    type: template
+    options:
+      type: carousel
+      data: $(context.arr) # [{'item':&quot;Chicken&quot;, 'desc':&quot;chick lover&quot;}, {'item':&quot;Pepperoni&quot;, 'desc':&quot;pepe rooney&quot;}]
+      template:
+        text: $[desc]
+        title: $[item]
+        actions:
+          -  type: postback
+             label: $[item]
+             payload:
+               type: pizza
+               pizza: $[item]
+</code></pre>
+
+<p>In state <em>showPizza </em>at <strong>order.yml</strong>, change action from <em>pizzaOptions </em>to <em>pizzaOptionsDynamic</em></p>
+<pre><code>showPizza:
+    action:
+      - name: pizzaOptionsDynamic
+      - name: askOptions
+    transitions:
+      pizzaQuantity:
+        condition: &quot;intent == 'pizzaChosen'&quot;
+        mapping: 
+          context.pizza: &quot;payload.pizza&quot;
+      showPizza:
+        fallback: true
+</code></pre>
+            </div>
+          </div>
+        </div>
     </body>
+
 </html>
