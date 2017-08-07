@@ -332,3 +332,14 @@ body > div > div > div.col.s9.m9.main-content > ul
 {
     padding-left: 25px;
 }
+
+body > div.container > div > div.col.s9.m9.main-content > p > img
+{
+    display: block;
+
+    width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
