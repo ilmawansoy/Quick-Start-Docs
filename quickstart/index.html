@@ -62,9 +62,12 @@
     
     <body>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="../js/materialize.min.js"></script>
-        <script type="text/javascript" src="../js/base.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/go.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <script type="text/javascript" src="../js/script.js"></script>
+        <script type="text/javascript" src="../js/base.js"></script>
         <div class="container">
           <div class="row">
             <div class="sidenavbar col s3 m3">
@@ -121,6 +124,16 @@
             
         
             <li class="second-level"><a href="#step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</a></li>
+            
+        
+            <li class="second-level"><a href="#step-8-change-state-without-input-from-user">Step 8: Change state without input from user</a></li>
+            
+        
+            <li class="second-level"><a href="#step-8-using-api-actions-and-global-metadata">Step 8: Using API actions, and global metadata</a></li>
+            
+                <li class="third-level"><a href="#step-81-global-metadata">Step 8.1: Global metadata</a></li>
+            
+                <li class="third-level"><a href="#step-82-api-actions">Step 8.2: api actions</a></li>
             
         
     
@@ -426,7 +439,7 @@ $ user: 'Halo'
 - bot: 'Hai mulu, buruan pesen dong'
 </code></pre>
 
-<p><img src="../img/1.png" alt="Image"></p>
+<p><img alt="Image" src="https://yesbossnow.quip.com/-/blob/GQRAAAloz86/8V3pjcHpp1aYac1tg63gdQ" /></p>
 <h2 id="step-3-modify-the-text-menu-into-carousel">Step 3: Modify the text menu into carousel</h2>
 <p>now modify <strong>order.yml</strong> by adding pizzaOptions in actions</p>
 <pre><code># Example of hard-coded carousel
@@ -527,7 +540,7 @@ pizzaOptions:
 </code></pre>
 
 <p>The bot can now understand the user input from carousel. <strong>payload</strong> is temporary, after some transitions it will have no value stored. later on we need to assign it to a <strong>context</strong>
-<img src="../img/2.png" alt="Image"></p>
+<img alt="Image" src="https://yesbossnow.quip.com/-/blob/GQRAAAloz86/i8kqyjGDuREkYi4X50Z9kw" /></p>
 <h2 id="step-4-add-flow-until-confirmation-of-the-the-order">Step 4: Add flow until confirmation of the the order</h2>
 <p>Two state is added in this step, to know how many pizza that the user want to order and confirm if the user already order the right one. After confirmation the state will come back to initial state so the user can start order again.</p>
 <p>Add nlu at <em>nlu.yml</em></p>
@@ -612,7 +625,7 @@ pizzaOptions:
       text: &quot;Terimakasih sudah memesan :)&quot;
 </code></pre>
 
-<p><img src="../img/3.png" alt="Image"></p>
+<p><img alt="Image" src="https://yesbossnow.quip.com/-/blob/GQRAAAloz86/QucsZrePlyV2fgDPcnxQyw" /></p>
 <h2 id="step-5-modify-confirmation-answer-to-button">Step 5: Modify confirmation answer to button</h2>
 <p>modify the <strong>order.yml</strong> by adding the yesNoButton in actions</p>
 <pre><code>  yesNoButton:
@@ -668,7 +681,7 @@ pizzaOptions:
 </code></pre>
 
 <p>after confirmation, at confirmPizza state it will return to init state and ready for another 'pesan' command.
-<img src="../img/4.png" alt="Image"></p>
+<img alt="Image" src="https://yesbossnow.quip.com/-/blob/GQRAAAloz86/VJm-EoNrM7SzeRoc7VAm4g" /></p>
 <h2 id="step-6-using-line-sticker-as-bot-response">Step 6: Using LINE Sticker as bot response</h2>
 <p>In this step we want the bot to be able to give response to user with sticker, to identify what sticker will be used the packageId and stickerId is needed as argument in actions.</p>
 <p>add action in <strong>order.yml</strong></p>
@@ -698,7 +711,7 @@ pizzaOptions:
         fallback: true        
 </code></pre>
 
-<p><img src="../img/5.png" alt="Image"></p>
+<p><img alt="Image" src="https://yesbossnow.quip.com/-/blob/GQRAAAloz86/UvzqveDQpMoWw92ZQSeWlw" /></p>
 <h2 id="step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</h2>
 <p>In this step we want to create carousel but not each content is written specifically by developer, instead we can use JSON Object as its input.</p>
 <p>Create methods in <strong>order.yml</strong> to simulate carousel which use JSON Object as input. The JSON Object example will be saved at <em>context.arr</em> when transit called <em>jalaninArr</em> method.</p>
@@ -743,6 +756,148 @@ pizzaOptions:
       showPizza:
         fallback: true
 </code></pre>
+
+<h2 id="step-8-change-state-without-input-from-user">Step 8: Change state without input from user</h2>
+<p>In this step, after bot respond the pizza order confirmation from user, there will be another actions but not from the same state as the bot respond before. Instead the actions come from another state but without input from user, using command action.</p>
+<p>First make a new flow for a new states (<strong>command actions can still be used on the same flow</strong>). Let's give the file name <strong>saveData.yml</strong>.</p>
+<pre><code># pay attention on the condition &quot;content == 'saveData'&quot;
+intents:
+  saveData:
+    initial: true
+    type: command
+    condition: &quot;content == 'saveData'&quot;
+
+states:
+  toDelivery:
+    initial: true
+    end: true
+    action:
+      name: testActions
+    transitions:
+      toDelivery:
+        fallback: true 
+
+actions:
+  testActions:
+    type: text
+    options:
+      text: &quot;Data sudah di save di database ya&quot;
+</code></pre>
+
+<p>In this step will also introduced the end of a flows, instead of transitions to the initial state.
+Remove all actions from the <em>init</em> state at <strong>order.yml</strong>, and move those actions to new state <em>done</em>, and add end of flows there.</p>
+<pre><code>  init:
+    initial:
+    ~~action~~~~:
+      - name: sayThanks
+        condition: &quot;context.answer == 'yes'&quot;
+      - name: sayThanksSticker
+        condition: &quot;context.answer == 'yes'&quot;
+      - name: cancelOrder
+        condition: &quot;context.answer == 'no'&quot;~~
+    transitions:
+      showPizza:
+        condition: &quot;intent == 'orderCommand'&quot;
+      init:
+        fallback: true
+    transit: jalaninArr
+</code></pre>
+
+<pre><code>  done:
+    end: true
+    action:
+      - name: sayThanks
+        condition: &quot;context.answer == 'yes'&quot;
+      - name: sayThanksSticker
+        condition: &quot;context.answer == 'yes'&quot;
+      - name: cancelOrder
+        condition: &quot;context.answer == 'no'&quot;        
+      - name: saveData
+        condition: &quot;context.answer == 'yes'&quot;
+</code></pre>
+
+<p>There is utility to change 
+Command actions added here, and will be done only if the user confirm the order </p>
+<p>change transitions at <em>confirmPizza</em> state at <strong>order.yml</strong> from <em>init</em> to done.</p>
+<pre><code>  confirmPizza:
+    action:
+      - name: yesNoButton
+    transitions:
+      done:
+        fallback: true
+        mapping:
+          context.answer: &quot;payload.confirm&quot;
+    transit:
+        context.answer: &quot;intent&quot;
+</code></pre>
+
+<p>and the last part add <em>actions at <strong>order.yml</strong></em>, which is command actions that make the bot able to change state without user input.</p>
+<pre><code>actions:
+  saveData:
+    type: command
+    options:
+      command: saveData
+</code></pre>
+
+<p>Look back up to <strong>saveData.yml</strong>, pay attention to initial intent which have condition “<em>content == 'saveData'</em> ”<em>. </em>At <strong>order.yml</strong> new command actions, there is options which have the value of 'saveData'. This value will be like an input from user and can be retrieved at 'content'. Just like when intent caught something, the value can be retrieved at 'intent'.
+[Image: https://yesbossnow.quip.com/-/blob/GQRAAAloz86/6oxVCPuzll18y5soi5ql7g]Because <strong>saveData.yml </strong>and <strong>order.yml</strong> flows has ended, the float state at <strong>welcome.yml</strong> will do its action which is greet user from the start.</p>
+<h2 id="step-8-using-api-actions-and-global-metadata">Step 8: Using API actions, and global metadata</h2>
+<h3 id="step-81-global-metadata">Step 8.1: Global metadata</h3>
+<p>Previously we know 'context', need to be initialized metadata that can be used for the whole session, but only for the flow where it's created. To use metadata that can be used globally, at every flow, then the value need to be saved at metadata named 'data'.</p>
+<p>For example we want to use 'pizza' and the 'quantity' from <strong>order.yml </strong>to be used at<strong> saveData.yml</strong> too. Add enter at 'done' <em>state </em>in <strong>order.yml.</strong>   </p>
+<pre><code>  done:
+    end: true
+    action:
+      - name: sayThanks
+        condition: &quot;context.answer == 'yes'&quot;
+      - name: sayThanksSticker
+        condition: &quot;context.answer == 'yes'&quot;
+      - name: cancelOrder
+        condition: &quot;context.answer == 'no'&quot;
+      - name: saveData
+        condition: &quot;context.answer == 'yes'&quot;
+    enter:
+      data.quantity: &quot;context.quantity&quot;
+      data.pizza: &quot;context.pizza&quot;
+</code></pre>
+
+<p>Now 'data.quantity' and 'data.pizza' can be accessed globally.</p>
+<h3 id="step-82-api-actions">Step 8.2: api actions</h3>
+<p>In this step let's assume:</p>
+<ul>
+<li>There is an API service to insert into local database with URI: http://b11f7ca6.ngrok.io/api/v1/insert</li>
+<li>For the the API service above 2 string arguments needed, 1st is quantity, and 2nd is pizza type, without primary key</li>
+<li>The API already connected to the local database, and the table is already exist and ready to use</li>
+</ul>
+<p><img alt="Image" src="https://yesbossnow.quip.com/-/blob/GQRAAAloz86/0bJGxwZ_r7Txaqb4Jy78Bg" />
+Add API actions at  <strong>saveData.yml</strong>, along with the needed arguments</p>
+<pre><code>actions:
+  saveDataAPI:
+    type: api
+    options:
+      method: &quot;POST&quot;
+      body:
+        params:
+          - $(data.quantity)
+          - $(data.pizza)
+      uri: &quot;http://b11f7ca6.ngrok.io/api/v1/insert&quot;
+</code></pre>
+
+<p>Call the action at the same time when 'testActions' at <strong>saveData.yml</strong> called<strong>.</strong></p>
+<pre><code>states:
+  toDelivery:
+    initial: true
+    end: true
+    action:
+      - name: testActions
+      - name: saveDataAPI
+    transitions:
+      toDelivery:
+        fallback: true
+</code></pre>
+
+<p><img alt="Image" src="https://yesbossnow.quip.com/-/blob/GQRAAAloz86/7H7qQelMUXBWEEX2wpJyLw" />
+<img alt="Image" src="https://yesbossnow.quip.com/-/blob/GQRAAAloz86/l0UAuQO-ZDEXK5peA3PlbA" /></p>
                 <br><hr>
                 <p class="center">Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
             </div>
