@@ -69,7 +69,7 @@
                 <li class="third-level"><a href="#adding-webhook">Adding webhook</a></li>
             
         
-            <li class="second-level"><a href="#example-create-and-setup-bot-official-account-line">EXAMPLE: Create and Setup Bot Official Account (LINE)</a></li>
+            <li class="second-level"><a href="#example-create-and-setup-bot-official-account-line">Example: Create and Setup Bot Official Account (LINE)</a></li>
             
         
     
@@ -126,9 +126,10 @@
 <p>Create folder for your bot project, and init your bot there.</p>
 <pre><code>$ mkdir &lt;bot-folder&gt;
 $ cd &lt;bot-folder&gt;
-$ kata init &lt;bot-id&gt; &lt;bot-name&gt; [version] #login not required to init bot
+$ kata init &lt;bot-id&gt; &lt;bot-name&gt; [version]
 </code></pre>
 
+<p>Note: login not required to init bot</p>
 <p>this will generate folder with <strong>nlu.yml, bot.yml, message.yml, flows folder</strong>
 example:</p>
 <pre><code>schema: kata.ai/schema/kata-ml/1.0
@@ -198,14 +199,23 @@ secret: &lt;channel secret&gt;
 url: &lt;url&gt; # Example: 'https://api.line.me' for LINE
 </code></pre>
 
-<p>NOTE: adding channel only required <em>ONCE</em></p>
+<p>Example</p>
+<pre><code>$ kata add-channel bot-name bot-channel
+</code></pre>
+
+<p><strong>NOTE:</strong> </p>
+<ul>
+<li>adding channel required at least ONCE</li>
+<li>channelName can be anything (to differentiate channels)</li>
+</ul>
 <h3 id="adding-webhook">Adding webhook</h3>
 <p>Setup webhook into url:</p>
 <pre><code>https://kanal.kata.ai/receive_message/{channelId}
 </code></pre>
 
 <p>NOTE: channelId generated from kata deployment-addChannel</p>
-<h2 id="example-create-and-setup-bot-official-account-line">EXAMPLE: Create and Setup Bot Official Account (LINE)</h2>
+<h2 id="example-create-and-setup-bot-official-account-line">Example: Create and Setup Bot Official Account (LINE)</h2>
+<p>You must follow the above instruction before continue to this section.</p>
 <ol>
 <li>Open Line Business web page</li>
 <li>Choose Messaging API, Start Using Developer Trial</li>
