@@ -4,6 +4,7 @@
         <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/kata.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
     </head>
     
@@ -52,13 +53,6 @@
     <ul class="nav bs-sidenav">
     
         <li class="first-level active"><a href="#quick-start">Quick Start</a></li>
-        
-            <li class="second-level"><a href="#installation">Installation</a></li>
-            
-                <li class="third-level"><a href="#try-kata-platform">Try Kata Platform</a></li>
-            
-                <li class="third-level"><a href="#login">Login</a></li>
-            
         
             <li class="second-level"><a href="#hello-bot">Hello Bot</a></li>
             
@@ -115,40 +109,18 @@
 </div>
             </div>  
             <div class="col s9 m9 main-content">
-              
+                
 
 <h1 id="quick-start">Quick Start</h1>
-<h2 id="installation">Installation</h2>
-<h3 id="try-kata-platform">Try Kata Platform</h3>
-<p>Install Kata-CLI at your device, using this command:</p>
-<pre><code>$ npm install -g kata-cli
-</code></pre>
-
-<p>now you can use command 'kata' globally</p>
-<h3 id="login">Login</h3>
-<p>Login using your account as user</p>
-<pre><code>$ kata login user -u &lt;username&gt;
-password: &lt;password&gt;
-</code></pre>
-
-<p>Login  using your account as team</p>
-<pre><code>$ kata login team &lt;teamName&gt; -u &lt;username&gt;
-password: &lt;password&gt;
-</code></pre>
-
-<p>Login using token</p>
-<pre><code>$ kata login user -t &lt;token&gt;
-</code></pre>
-
 <h2 id="hello-bot">Hello Bot</h2>
 <p>Before started
 <strong>Simple explanation about the fundamental components of the bot consists of:</strong></p>
 <ul>
-<li>nlu's : the natural language understanding/model, defined to be used in the bot</li>
-<li>intents : is list of purpose defined to understand user intention</li>
-<li>states : is the stages/procedure of interaction with user</li>
-<li>actions : is list of action defined to perform in each state </li>
-<li>methods : case of more complicated computation/action needed. In javascript language</li>
+<li><span> nlu's </span>: the natural language understanding/model, defined to be used in the bot</li>
+<li><span> intents </span> : is list of purpose defined to understand user intention</li>
+<li><span> states </span> : is the stages/procedure of interaction with user</li>
+<li><span> actions </span> : is list of action defined to perform in each state </li>
+<li><span> methods </span> : case of more complicated computation/action needed. In javascript language</li>
 </ul>
 <h3 id="init-project">Init project</h3>
 <p>Create folder for your bot project, and init your bot there.</p>
@@ -239,7 +211,7 @@ url: &lt;url&gt; # Example: 'https://api.line.me' for LINE
 <li>Choose Messaging API, Start Using Developer Trial</li>
 <li>Fill required information</li>
 <li>Enable API</li>
-<li>Choose Settings →Bot Settings, Allow use webhooks and open LINE Developers</li>
+<li>Choose Settings → Bot Settings, Allow use webhooks and open LINE Developers</li>
 <li>Don't forget to add Webhook URL</li>
 </ol>
 <h1 id="pizza-bot-line">Pizza Bot (LINE)</h1>
@@ -728,9 +700,12 @@ pizzaOptions:
       showPizza:
         fallback: true
 </code></pre>
+                <br><hr>
+                <p class="center">Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
             </div>
           </div>
         </div>
     </body>
+
 
 </html>

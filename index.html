@@ -4,6 +4,7 @@
         <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/kata.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
     </head>
     
@@ -51,12 +52,19 @@
               <div class="bs-sidebar hidden-print affix well" role="complementary" id="scrollbar-style">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#welcome-to-mkdocs">Welcome to MkDocs</a></li>
+        <li class="first-level active"><a href="#welcome-to-katadocs">Welcome to KataDocs</a></li>
+        
+            <li class="second-level"><a href="#introduction">Introduction</a></li>
+            
+        
+            <li class="second-level"><a href="#installation">Installation</a></li>
+            
+                <li class="third-level"><a href="#try-kata-platform">Try Kata Platform</a></li>
+            
         
             <li class="second-level"><a href="#commands">Commands</a></li>
             
-        
-            <li class="second-level"><a href="#project-layout">Project layout</a></li>
+                <li class="third-level"><a href="#login">Login</a></li>
             
         
     
@@ -64,26 +72,79 @@
 </div>
             </div>  
             <div class="col s9 m9 main-content">
-              
+                
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="http://mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs help</code> - Print this help message.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+<h1 id="welcome-to-katadocs">Welcome to KataDocs</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Kata Command Line Interface (Kata CLI) is a tool for creating bots with
+Kata Machine Learning (Kata ML) which suited with Natural Language Processing (NLP) technology.
+Kata CLI also helps managing the bots with command line / shell of various operating systems.</p>
+<p>For more information, check <a href="http://kata.ai/en">our website</a>.</p>
+<h2 id="installation">Installation</h2>
+<h3 id="try-kata-platform">Try Kata Platform</h3>
+<p>Install Kata-CLI at your device, using this command:</p>
+<pre><code>$ npm install -g kata-cli
 </code></pre>
+
+<p>now you can use command 'kata' globally</p>
+<h2 id="commands">Commands</h2>
+<p>Use <code>kata --help</code> to see commands list available</p>
+<ul>
+<li><code>bot-init|init [options] &lt;bot&gt; &lt;name&gt; [version]</code> - Init the bot</li>
+<li><code>bot-versions|versions</code> - List versions of the bot</li>
+<li><code>bot-list|list-bots</code> - List the bots</li>
+<li><code>bot-push|push [options]</code> - Push the bot</li>
+<li><code>bot-delete|remove-bot</code> - Delete selected bot</li>
+<li><code>bot-test|test [file]</code></li>
+<li><code>bot-console|console [options] &lt;diaenneUrl&gt;</code></li>
+<li><code>deployment-deploy|deploy &lt;name&gt; [version]</code> - Deploy the bot</li>
+<li><code>deployment-addChannel|add-channel [options] &lt;name&gt; &lt;channelName&gt;</code> - Add bot channel</li>
+<li><code>deployment-removeChannel|remove-channel &lt;name&gt; &lt;channelName&gt;</code> - Remove bot channel</li>
+<li><code>deployment-drop|drop &lt;name&gt;</code></li>
+<li><code>session-get &lt;id&gt; [deploymentId]</code></li>
+<li><code>session-create [options] [id] [deploymentId]</code></li>
+<li><code>session-update [options] &lt;id&gt; [deploymentId]</code></li>
+<li><code>session-delete &lt;id&gt; [deploymentId]</code></li>
+<li><code>set &lt;prop&gt; &lt;value&gt;</code></li>
+<li><code>login [options] &lt;type&gt; [name]</code></li>
+</ul>
+<h3 id="login">Login</h3>
+<p>To start developing your bot,
+you need to login using your account as user</p>
+<pre><code>$ kata login user -u &lt;username&gt;
+password: &lt;password&gt;
+</code></pre>
+
+<p>Login  using your account as team</p>
+<pre><code>$ kata login team &lt;teamName&gt; -u &lt;username&gt;
+password: &lt;password&gt;
+</code></pre>
+
+<p>Login using token</p>
+<pre><code>$ kata login user -t &lt;token&gt;
+</code></pre>
+
+<!-- 
+## Commands
+
+* `mkdocs new [dir-name]` - Create a new project.
+* `mkdocs serve` - Start the live-reloading docs server.
+* `mkdocs build` - Build the documentation site.
+* `mkdocs help` - Print this help message.
+
+## Project layout
+
+    mkdocs.yml    # The configuration file.
+    docs/
+        index.md  # The documentation homepage.
+        ...       # Other markdown pages, images and other files.
+ -->
+                <br><hr>
+                <p class="center">Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
             </div>
           </div>
         </div>
     </body>
+
 
 </html>
