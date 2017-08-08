@@ -3,3 +3,4 @@ pages:
   - Home: index.md
   - Quick Start: quickstart.md
 theme: null
+theme_dir: custom_theme

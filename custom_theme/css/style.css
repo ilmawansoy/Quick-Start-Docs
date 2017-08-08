@@ -1,0 +1,345 @@
+.sidenavbar
+{
+    font-size: 13px;
+}
+
+h1
+{
+    font-size: 45px !important;
+    font-weight: bolder !important;
+
+    color: #2d72e2;
+}
+
+h2
+{
+    font-size: 30px !important;
+}
+
+h3
+{
+    font-size: 25px !important;
+}
+
+h4
+{
+    font-size: 20px !important;
+}
+
+h5
+{
+    font-size: 18px !important;
+}
+
+pre,
+code
+{
+    background-color: #fcfdff;
+}
+
+pre > code
+{
+    font-size: 13px;
+}
+
+pre
+{
+    font-size: 13px;
+    line-height: 1.428571429;
+
+    display: block;
+
+    margin: 1 1 10px;
+    padding: 11.5px;
+
+    word-wrap: break-word;
+    word-break: break-all;
+
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fcfdff;
+}
+
+h1[id]:before,
+h2[id]:before,
+h3[id]:before,
+h4[id]:before,
+h5[id]:before,
+h6[id]:before
+{
+    display: block;
+
+    height: 75px;
+    margin-top: -75px;
+
+    content: '';
+}
+
+ul.nav li.first-level
+{
+    font-weight: bold;
+}
+
+ul.nav li.third-level
+{
+    padding-left: 12px;
+}
+
+div.col-md-3
+{
+    padding-left: 0;
+}
+
+div.col-md-9
+{
+    padding-bottom: 100px;
+}
+
+div.source-links
+{
+    float: right;
+}
+
+/*
+ * Side navigation
+ *
+ * Scrollspy and affixed enhanced navigation to highlight sections and secondary
+ * sections of docs content.
+ */
+
+/* By default it's not affixed in mobile views, so undo that */
+.bs-sidebar.affix
+{
+    position: static;
+}
+
+.bs-sidebar.well
+{
+    padding: 0;
+}
+
+/* First level of nav */
+.bs-sidenav
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border-radius: 5px;
+}
+
+/* All levels of nav */
+.bs-sidebar .nav > li > a
+{
+    z-index: 1;
+
+    display: block;
+
+    padding: 5px 25px;
+
+    color: #3e3d4f;
+}
+.bs-sidebar .nav > li > a:hover,
+.bs-sidebar .nav > li > a:focus
+{
+    font-weight: bold;
+
+    text-decoration: none;
+
+    color: #4386f2;
+}
+.bs-sidebar .nav > .active > a,
+.bs-sidebar .nav > .active:hover > a,
+.bs-sidebar .nav > .active:focus > a
+{
+    font-weight: bold;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-sidebar .nav .nav
+{
+    display: none; /* Hide by default, but at >768px, show it */
+
+    margin-bottom: 8px;
+}
+.bs-sidebar .nav .nav > li > a
+{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 30px;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 492px)
+{
+    .bs-sidebar .nav > .active > ul
+    {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-sidebar.affix,
+    .bs-sidebar.affix-bottom
+    {
+        width: 150px;
+    }
+    .bs-sidebar.affix
+    {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 90px;
+
+        overflow-y: scroll;
+
+        max-height: 450px;
+        margin-left: -30px;
+
+        background-color: #f2f2f2;
+
+        border-radius: 30px 0px 0px 30px;
+    }
+    .bs-sidebar.affix-bottom .bs-sidenav,
+    .bs-sidebar.affix .bs-sidenav
+    {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 890px)
+{
+    .bs-sidebar .nav > .active > ul
+    {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-sidebar.affix,
+    .bs-sidebar.affix-bottom
+    {
+        width: 213px;
+    }
+    .bs-sidebar.affix
+    {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 90px;
+
+        overflow-y: scroll;
+
+        max-height: 480px;
+        margin-left: -60px;
+
+        background-color: #f2f2f2;
+
+        border-radius: 30px 0px 0px 30px;
+    }
+    .bs-sidebar.affix-bottom .bs-sidenav,
+    .bs-sidebar.affix .bs-sidenav
+    {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+@media (min-width: 1200px)
+{
+    .bs-sidebar .nav > .active > ul
+    {
+        display: block;
+    }
+    /* Widen the fixed sidebar again */
+    .bs-sidebar.affix-bottom,
+    .bs-sidebar.affix
+    {
+        width: 263px;
+    }
+
+    .bs-sidebar.affix
+    {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 90px;
+
+        overflow-y: scroll;
+
+        max-height: 480px;
+        margin-left: -60px;
+
+        background-color: #f2f2f2;
+
+        border-radius: 30px 0px 0px 30px;
+    }
+    .bs-sidebar.affix-bottom .bs-sidenav,
+    .bs-sidebar.affix .bs-sidenav
+    {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+
+/* Added to support >2 level nav in drop down */
+
+.dropdown-submenu
+{
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu
+{
+    top: 0;
+    left: 100%;
+
+    margin-top: 0;
+    margin-left: 0;
+
+    -webkit-border-radius: 0 6px 6px 6px;
+       -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu
+{
+    display: block;
+}
+
+.dropdown-submenu > a:after
+{
+    display: block;
+    float: right;
+
+    width: 0;
+    height: 0;
+    margin-top: 5px;
+    margin-right: -10px;
+
+    content: ' ';
+
+    border-width: 5px 0 5px 5px;
+    border-style: solid;
+    border-color: transparent;
+    border-left-color: #ccc;
+}
+
+.dropdown-submenu:hover > a:after
+{
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left
+{
+    float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu
+{
+    left: -100%;
+
+    margin-left: 00px;
+
+    -webkit-border-radius: 6px 0 6px 6px;
+       -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+}
+
+body > div.navbar-fixed > nav > div > ul > li > a
+{
+    height: 64px;
+}

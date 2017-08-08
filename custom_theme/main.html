@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>{{site_name}}</title>
+        <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ base_url }}/css/style.css">
+        <link rel="stylesheet" href="{{ base_url }}/css/kata.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+    
+    <div class="navbar-fixed">
+        <nav class="nav-style">
+            <div class="nav-wrapper container">
+                {% include 'nav.html' %}    
+            </div>
+        </nav>    
+    </div>
+    
+    <body>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="{{ base_url }}/js/materialize.min.js"></script>
+        <script type="text/javascript" src="{{ base_url }}/js/base.js"></script>
+        <script type="text/javascript" src="{{ base_url }}/js/script.js"></script>
+        <div class="container">
+          <div class="row">
+            <div class="sidenavbar col s3 m3">
+              {% include 'toc.html' %}
+            </div>  
+            <div class="col s9 m9 main-content">
+                {% include 'content.html' %}
+                <br><hr>
+                <p class="center">Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+            </div>
+          </div>
+        </div>
+    </body>
+
+
+</html>
