@@ -411,7 +411,7 @@ $ user: 'Halo'
 - bot: 'Hai mulu, buruan pesen dong'
 </code></pre>
 
-<p><img alt="Screenshot" src="../img/1.png" /></p>
+<p><img alt="Screenshot" src="../../../img/1.png" /></p>
 <h2 id="step-3-modify-the-text-menu-into-carousel">Step 3: Modify the text menu into carousel</h2>
 <p>now modify <strong>order.yml</strong> by adding pizzaOptions in actions</p>
 <pre><code># Example of hard-coded carousel
@@ -512,7 +512,7 @@ pizzaOptions:
 </code></pre>
 
 <p>The bot can now understand the user input from carousel. <strong>payload</strong> is temporary, after some transitions it will have no value stored. later on we need to assign it to a <strong>context</strong>
-<img alt="Screenshot" src="../img/2.png" /></p>
+<img alt="Screenshot" src="../../img/2.png" /></p>
 <h2 id="step-4-add-flow-until-confirmation-of-the-the-order">Step 4: Add flow until confirmation of the the order</h2>
 <p>Two state is added in this step, to know how many pizza that the user want to order and confirm if the user already order the right one. After confirmation the state will come back to initial state so the user can start order again.</p>
 <p>Add nlu at <em>nlu.yml</em></p>
@@ -597,7 +597,7 @@ pizzaOptions:
       text: &quot;Terimakasih sudah memesan :)&quot;
 </code></pre>
 
-<p><img alt="Screenshot" src="../img/3.png" /></p>
+<p><img alt="Screenshot" src="../../img/3.png" /></p>
 <h2 id="step-5-modify-confirmation-answer-to-button">Step 5: Modify confirmation answer to button</h2>
 <p>modify the <strong>order.yml</strong> by adding the yesNoButton in actions</p>
 <pre><code>  yesNoButton:
@@ -653,7 +653,7 @@ pizzaOptions:
 </code></pre>
 
 <p>after confirmation, at confirmPizza state it will return to init state and ready for another 'pesan' command.
-<img alt="Screenshot" src="../img/4.png" /></p>
+<img alt="Screenshot" src="../../img/4.png" /></p>
 <h2 id="step-6-using-line-sticker-as-bot-response">Step 6: Using LINE Sticker as bot response</h2>
 <p>In this step we want the bot to be able to give response to user with sticker, to identify what sticker will be used the packageId and stickerId is needed as argument in actions.</p>
 <p>add action in <strong>order.yml</strong></p>
@@ -683,7 +683,7 @@ pizzaOptions:
         fallback: true        
 </code></pre>
 
-<p><img alt="Screenshot" src="../img/5.png" /></p>
+<p><img alt="Screenshot" src="../../img/5.png" /></p>
 <h2 id="step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</h2>
 <p>In this step we want to create carousel but not each content is written specifically by developer, instead we can use JSON Object as its input.</p>
 <p>Create methods in <strong>order.yml</strong> to simulate carousel which use JSON Object as input. The JSON Object example will be saved at <em>context.arr</em> when transit called <em>jalaninArr</em> method.</p>
