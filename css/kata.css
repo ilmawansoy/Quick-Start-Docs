@@ -107,7 +107,7 @@ body > div.container > div > div.col.s9.m9.main-content > ul > li > span
     margin-left: auto;  
 }
 
-.thumbnailLogo
+body > div.container > div > div.col.s9.m9.main-content > p:nth-child(5) > a > img
 {
     display: block;
 
