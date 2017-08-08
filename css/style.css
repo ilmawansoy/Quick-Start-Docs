@@ -139,7 +139,7 @@ div.source-links
 
     padding: 5px 25px;
 
-    color: grey;
+    color: #3e3d4f;
 }
 .bs-sidebar .nav > li > a:hover,
 .bs-sidebar .nav > li > a:focus
@@ -172,7 +172,41 @@ div.source-links
 }
 
 /* Show and affix the side nav when space allows it */
-@media (min-width: 992px)
+@media (min-width: 492px)
+{
+    .bs-sidebar .nav > .active > ul
+    {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-sidebar.affix,
+    .bs-sidebar.affix-bottom
+    {
+        width: 150px;
+    }
+    .bs-sidebar.affix
+    {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 90px;
+
+        overflow-y: scroll;
+
+        max-height: 450px;
+        margin-left: -30px;
+
+        background-color: #f2f2f2;
+
+        border-radius: 30px 0px 0px 30px;
+    }
+    .bs-sidebar.affix-bottom .bs-sidenav,
+    .bs-sidebar.affix .bs-sidenav
+    {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 890px)
 {
     .bs-sidebar .nav > .active > ul
     {
@@ -195,6 +229,8 @@ div.source-links
         margin-left: -60px;
 
         background-color: #f2f2f2;
+
+        border-radius: 30px 0px 0px 30px;
     }
     .bs-sidebar.affix-bottom .bs-sidenav,
     .bs-sidebar.affix .bs-sidenav
@@ -205,11 +241,36 @@ div.source-links
 }
 @media (min-width: 1200px)
 {
+    .bs-sidebar .nav > .active > ul
+    {
+        display: block;
+    }
     /* Widen the fixed sidebar again */
     .bs-sidebar.affix-bottom,
     .bs-sidebar.affix
     {
         width: 263px;
+    }
+
+    .bs-sidebar.affix
+    {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 90px;
+
+        overflow-y: scroll;
+
+        max-height: 480px;
+        margin-left: -60px;
+
+        background-color: #f2f2f2;
+
+        border-radius: 30px 0px 0px 30px;
+    }
+    .bs-sidebar.affix-bottom .bs-sidenav,
+    .bs-sidebar.affix .bs-sidenav
+    {
+        margin-top: 0;
+        margin-bottom: 0;
     }
 }
 
@@ -276,4 +337,9 @@ div.source-links
     -webkit-border-radius: 6px 0 6px 6px;
        -moz-border-radius: 6px 0 6px 6px;
             border-radius: 6px 0 6px 6px;
+}
+
+body > div.navbar-fixed > nav > div > ul > li > a
+{
+    height: 64px;
 }

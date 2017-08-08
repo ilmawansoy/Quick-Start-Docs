@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/kata.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
@@ -17,9 +18,10 @@
     });
     </script>
     
-    <nav class="nav-style">
-        <div class="nav-wrapper container">
-            
+    <div class="navbar-fixed">
+        <nav class="nav-style">
+            <div class="nav-wrapper container">
+                
 <ul class="left">
     <li>
         <h4 class="brand">KataDocs</h4>
@@ -38,13 +40,30 @@
     
     
 </ul>
+
+
+<ul class="right">
     
-        </div>
-    </nav>
+    <li >
+        <a rel="next" href="..">
+            <i class="fa fa-arrow-left"></i>  Previous 
+        </a>
+    </li>
+    <li class="disabled">
+        <a rel="prev" >
+            Next  <i class="fa fa-arrow-right"></i>
+        </a>
+    </li>
+        
+</ul>    
+            </div>
+        </nav>    
+    </div>
     
     <body>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="../js/materialize.min.js"></script>
+        <script type="text/javascript" src="../js/base.js"></script>
         <script type="text/javascript" src="../js/script.js"></script>
         <div class="container">
           <div class="row">
@@ -64,7 +83,7 @@
             
                 <li class="third-level"><a href="#deployment">Deployment</a></li>
             
-                <li class="third-level"><a href="#adding-channel">Adding ChanneL</a></li>
+                <li class="third-level"><a href="#adding-channel">Adding Channel</a></li>
             
                 <li class="third-level"><a href="#adding-webhook">Adding webhook</a></li>
             
@@ -186,21 +205,23 @@ Make 'hi' intents to use nlu 'greet' instead.</p>
 </code></pre>
 
 <h3 id="deployment">Deployment</h3>
-<pre><code>$ kata deploy &lt;name&gt; [version]
+<pre><code>$ kata deploy &lt;bot-name&gt; [version]
 </code></pre>
 
 <p>NOTE: Repeat push and deployment each time you want to update your bot at the messaging application</p>
-<h3 id="adding-channel">Adding ChanneL</h3>
-<pre><code>$ kata add-channel [options] &lt;name&gt; &lt;channelName&gt; : ChannelId
+<h3 id="adding-channel">Adding Channel</h3>
+<p><span>Important:</span> This section and <a href="#example-create-and-setup-bot-official-account-line">Setup Bot</a>
+are related.</p>
+<pre><code>$ kata add-channel [options] &lt;bot-name&gt; &lt;channelName&gt; : ChannelId
 type: &lt;line | fbmessenger&gt;
-token: &lt;channel access token&gt;
+token: &lt;channel access token&gt; # given from the chat platform
 refreshToken : [refresToken] # may empty
 secret: &lt;channel secret&gt;
 url: &lt;url&gt; # Example: 'https://api.line.me' for LINE
 </code></pre>
 
 <p>Example</p>
-<pre><code>$ kata add-channel bot-name bot-channel
+<pre><code>$ kata add-channel botName botChannel
 </code></pre>
 
 <p><strong>NOTE:</strong> </p>
@@ -214,8 +235,10 @@ url: &lt;url&gt; # Example: 'https://api.line.me' for LINE
 </code></pre>
 
 <p>NOTE: channelId generated from kata deployment-addChannel</p>
+<p>Example
+<img class="thumbnailImg" src="../img/6.png" alt="Image"></p>
 <h2 id="example-create-and-setup-bot-official-account-line">Example: Create and Setup Bot Official Account (LINE)</h2>
-<p>You must follow the above instruction before continue to this section.</p>
+<p><strong>Step:</strong></p>
 <ol>
 <li>Open Line Business web page</li>
 <li>Choose Messaging API, Start Using Developer Trial</li>
@@ -224,7 +247,11 @@ url: &lt;url&gt; # Example: 'https://api.line.me' for LINE
 <li>Choose Settings → Bot Settings, Allow use webhooks and open LINE Developers</li>
 <li>Don't forget to add Webhook URL</li>
 </ol>
+<p>Example</p>
+<p><img class="thumbnailImg" src="../img/7.png" alt="Image"></p>
+<p><span>Important: </span>This bot information is needed in <a href="#adding-channel">Setup/Adding Channel</a></p>
 <h1 id="pizza-bot-line">Pizza Bot (LINE)</h1>
+<p>Before continue into this section, please finish the <a href="#hello-bot">Hello Bot</a> section first. </p>
 <h2 id="step-1-differentiate-greet-and-cant-understand-input">Step 1: Differentiate greet, and can't understand input</h2>
 <h3 id="step-11-defining-nlu">Step 1.1: Defining nlu</h3>
 <p>add this in <strong>nlu.yml</strong></p>

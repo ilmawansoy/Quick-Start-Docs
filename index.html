@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="./css/kata.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
@@ -17,9 +18,10 @@
     });
     </script>
     
-    <nav class="nav-style">
-        <div class="nav-wrapper container">
-            
+    <div class="navbar-fixed">
+        <nav class="nav-style">
+            <div class="nav-wrapper container">
+                
 <ul class="left">
     <li>
         <h4 class="brand">KataDocs</h4>
@@ -38,13 +40,30 @@
     
     
 </ul>
+
+
+<ul class="right">
     
-        </div>
-    </nav>
+    <li class="disabled">
+        <a rel="next" >
+            <i class="fa fa-arrow-left"></i>  Previous 
+        </a>
+    </li>
+    <li >
+        <a rel="prev" href="quickstart/">
+            Next  <i class="fa fa-arrow-right"></i>
+        </a>
+    </li>
+        
+</ul>    
+            </div>
+        </nav>    
+    </div>
     
     <body>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="./js/materialize.min.js"></script>
+        <script type="text/javascript" src="./js/base.js"></script>
         <script type="text/javascript" src="./js/script.js"></script>
         <div class="container">
           <div class="row">
@@ -80,6 +99,7 @@
 Kata Machine Learning (Kata ML) which suited with Natural Language Processing (NLP) technology.
 Kata CLI also helps managing the bots with command line / shell of various operating systems.</p>
 <p>For more information, check <a href="http://kata.ai/en">our website</a>.</p>
+<p><a href="http://kata.ai/en"><img class="thumbnailLogo" src="../img/logo.png" alt="Logo" ></a></p>
 <h2 id="installation">Installation</h2>
 <h3 id="try-kata-platform">Try Kata Platform</h3>
 <p>Install Kata-CLI at your device, using this command:</p>
@@ -90,23 +110,23 @@ Kata CLI also helps managing the bots with command line / shell of various opera
 <h2 id="commands">Commands</h2>
 <p>Use <code>kata --help</code> to see commands list available</p>
 <ul>
-<li><code>bot-init|init [options] &lt;bot&gt; &lt;name&gt; [version]</code> - Init the bot</li>
-<li><code>bot-versions|versions</code> - List versions of the bot</li>
-<li><code>bot-list|list-bots</code> - List the bots</li>
-<li><code>bot-push|push [options]</code> - Push the bot</li>
-<li><code>bot-delete|remove-bot</code> - Delete selected bot</li>
-<li><code>bot-test|test [file]</code></li>
-<li><code>bot-console|console [options] &lt;diaenneUrl&gt;</code></li>
-<li><code>deployment-deploy|deploy &lt;name&gt; [version]</code> - Deploy the bot</li>
-<li><code>deployment-addChannel|add-channel [options] &lt;name&gt; &lt;channelName&gt;</code> - Add bot channel</li>
-<li><code>deployment-removeChannel|remove-channel &lt;name&gt; &lt;channelName&gt;</code> - Remove bot channel</li>
-<li><code>deployment-drop|drop &lt;name&gt;</code></li>
-<li><code>session-get &lt;id&gt; [deploymentId]</code></li>
-<li><code>session-create [options] [id] [deploymentId]</code></li>
-<li><code>session-update [options] &lt;id&gt; [deploymentId]</code></li>
-<li><code>session-delete &lt;id&gt; [deploymentId]</code></li>
-<li><code>set &lt;prop&gt; &lt;value&gt;</code></li>
-<li><code>login [options] &lt;type&gt; [name]</code></li>
+<li><code>kata bot-init|init [options] &lt;bot&gt; &lt;name&gt; [version]</code> - Init the bot</li>
+<li><code>kata bot-versions|versions</code> - List versions of the bot</li>
+<li><code>kata bot-list|list-bots</code> - List the bots</li>
+<li><code>kata bot-push|push [options]</code> - Push the bot</li>
+<li><code>kata bot-delete|remove-bot</code> - Delete selected bot</li>
+<li><code>kata bot-test|test [file]</code></li>
+<li><code>kata bot-console|console [options] &lt;diaenneUrl&gt;</code></li>
+<li><code>kata deployment-deploy|deploy &lt;name&gt; [version]</code> - Deploy the bot</li>
+<li><code>kata deployment-addChannel|add-channel [options] &lt;name&gt; &lt;channelName&gt;</code> - Add bot channel</li>
+<li><code>kata deployment-removeChannel|remove-channel &lt;name&gt; &lt;channelName&gt;</code> - Remove bot channel</li>
+<li><code>kata deployment-drop|drop &lt;name&gt;</code></li>
+<li><code>kata session-get &lt;id&gt; [deploymentId]</code></li>
+<li><code>kata session-create [options] [id] [deploymentId]</code></li>
+<li><code>kata session-update [options] &lt;id&gt; [deploymentId]</code></li>
+<li><code>kata session-delete &lt;id&gt; [deploymentId]</code></li>
+<li><code>kata set &lt;prop&gt; &lt;value&gt;</code></li>
+<li><code>kata login [options] &lt;type&gt; [name]</code></li>
 </ul>
 <h3 id="login">Login</h3>
 <p>To start developing your bot,
