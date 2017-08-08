@@ -840,7 +840,8 @@ Command actions added here, and will be done only if the user confirm the order 
 </code></pre>
 
 <p>Look back up to <strong>saveData.yml</strong>, pay attention to initial intent which have condition “<em>content == 'saveData'</em> ”<em>. </em>At <strong>order.yml</strong> new command actions, there is options which have the value of 'saveData'. This value will be like an input from user and can be retrieved at 'content'. Just like when intent caught something, the value can be retrieved at 'intent'.
-[Image: https://yesbossnow.quip.com/-/blob/GQRAAAloz86/6oxVCPuzll18y5soi5ql7g]Because <strong>saveData.yml </strong>and <strong>order.yml</strong> flows has ended, the float state at <strong>welcome.yml</strong> will do its action which is greet user from the start.</p>
+<img alt="Image" src="https://yesbossnow.quip.com/-/blob/GQRAAAloz86/6oxVCPuzll18y5soi5ql7g" />
+Because <strong>saveData.yml </strong>and <strong>order.yml</strong> flows has ended, the float state at <strong>welcome.yml</strong> will do its action which is greet user from the start.</p>
 <h2 id="step-8-using-api-actions-and-global-metadata">Step 8: Using API actions, and global metadata</h2>
 <h3 id="step-81-global-metadata">Step 8.1: Global metadata</h3>
 <p>Previously we know 'context', need to be initialized metadata that can be used for the whole session, but only for the flow where it's created. To use metadata that can be used globally, at every flow, then the value need to be saved at metadata named 'data'.</p>
