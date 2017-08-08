@@ -92,38 +92,6 @@
             
         
     
-        <li class="first-level "><a href="#pizza-bot-line">Pizza Bot (LINE)</a></li>
-        
-            <li class="second-level"><a href="#step-1-differentiate-greet-and-cant-understand-input">Step 1: Differentiate greet, and can't understand input</a></li>
-            
-                <li class="third-level"><a href="#step-11-defining-nlu">Step 1.1: Defining nlu</a></li>
-            
-                <li class="third-level"><a href="#step-12-defining-flows">Step 1.2: Defining flows</a></li>
-            
-        
-            <li class="second-level"><a href="#step-2-bot-can-understand-users-order">Step 2: Bot can understand user's order</a></li>
-            
-        
-            <li class="second-level"><a href="#step-3-modify-the-text-menu-into-carousel">Step 3: Modify the text menu into carousel</a></li>
-            
-                <li class="third-level"><a href="#step-31-use-the-input-from-carousel">Step 3.1: Use the input from carousel.</a></li>
-            
-        
-            <li class="second-level"><a href="#step-4-add-flow-until-confirmation-of-the-the-order">Step 4: Add flow until confirmation of the the order</a></li>
-            
-        
-            <li class="second-level"><a href="#step-5-modify-confirmation-answer-to-button">Step 5: Modify confirmation answer to button</a></li>
-            
-                <li class="third-level"><a href="#step-51-use-the-input-from-button">Step 5.1: Use the input From Button</a></li>
-            
-        
-            <li class="second-level"><a href="#step-6-using-line-sticker-as-bot-response">Step 6: Using LINE Sticker as bot response</a></li>
-            
-        
-            <li class="second-level"><a href="#step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</a></li>
-            
-        
-    
     </ul>
 </div>
             </div>  
@@ -250,493 +218,216 @@ url: &lt;url&gt; # Example: 'https://api.line.me' for LINE
 <p>Example</p>
 <p><img class="thumbnailImg" src="../img/7.png" alt="Image"></p>
 <p><span>Important: </span>This bot information is needed in <a href="#adding-channel">Setup/Adding Channel</a></p>
-<h1 id="pizza-bot-line">Pizza Bot (LINE)</h1>
-<p>Before continue into this section, please finish the <a href="#hello-bot">Hello Bot</a> section first. </p>
-<h2 id="step-1-differentiate-greet-and-cant-understand-input">Step 1: Differentiate greet, and can't understand input</h2>
-<h3 id="step-11-defining-nlu">Step 1.1: Defining nlu</h3>
-<p>add this in <strong>nlu.yml</strong></p>
-<pre><code># model for entity recognition (example: person name, places, etc)
-ner:
-  type: verstandTagger
-    options:
-      model: dcaca5ae-be7f-42f2-a6a1-2b250d4336fd
+<!-- # Pizza Bot (LINE)
 
-# model for question, instruction, statement &amp; greeting (qisg)        
-qisg:
-  type: verstandClassifier
-    options:
-      model: cb58d784-9e87-40d5-bae1-6077b934c061    
+Before continue into this section, please finish the <a href="#hello-bot">Hello Bot</a> section first. 
 
-# nlu for YES or NO statement
-yesno:
-  type: verstandClassifier
-    options:
-      model: b7df76e5-b95d-4925-9f86-2796ea85403a
-</code></pre>
+## Step 1: Differentiate greet, and can't understand input
 
-<h3 id="step-12-defining-flows">Step 1.2: Defining flows</h3>
-<p>Modify <em>fallback.yml</em></p>
-<pre><code># case no other flow's intent caught something
-fallback: true
-intents:
-  fallbackIntent:
-      fallback: true
+### Step 1.1: Defining nlu
 
-states:
-  init:
-    initial: true
-    transitions:
-      init:
-        fallback: true
-    action:
-      name: fallbackAction
+add this in **nlu.yml**
 
-actions:
-  fallbackAction:
-    type: text
-    options:
-      text: &quot;Maaf, saya tidak mengerti.&quot;
-</code></pre>
 
-<p>Create <em>welcome.yml</em></p>
-<pre><code>priority: 9
-intents:
-    greeting:
-        initial: true
-        type: text
-        classifier:
-            nlu: qisg
-            match: greeting
-        priority: 10
+wzxhzdk:9
 
-states:
-    init:
-        initial: true
-        transitions:
-          greet: 
-            condition: &quot;intent == 'greeting'&quot;
 
-    greet:
-        end: true
+### Step 1.2: Defining flows
 
-        # Normally it is tedious if we have to define a transition to a state that 
-        # is available in every state. e.g. Cancel state. To mitigate this we can define 
-        # a floating transition. The system will automatically attach this transition in 
-        # every state.
-        float:
-            fallback: true
-        action:
-            - name: greetPerson
-              condition: &quot;!context.greetCount&quot;
-            - name: greetAgain
-              condition: &quot;context.greetCount &gt;= 1&quot;
+Modify *fallback.yml*
 
-        # Specify mapping or method to be executed when transition is started
-        # create context.greeCount or do increment
-        transit:
-            context.greetCount: &quot;intent == 'greeting' ? (context.greetCount || 0) + 1 : 0&quot;
 
-actions:
-    greetAgain:
-        type: text
-        options:
-            text: &quot;Hai mulu, buruan pesen dong&quot;
+wzxhzdk:10
 
-    greetPerson:
-        type: text
-        options:
-            text: &quot;Halo pizza bot disini&quot;
-</code></pre>
 
-<p>Modify bot.yml</p>
-<pre><code># add flow of welcoming user
-flows:
-   welcome: $include(./flows/welcome.yml)
-   fallback: $include(./flows/fallback.yml)
-</code></pre>
+Create *welcome.yml*
 
-<p>Now your bot able to tell if user is greeting, bot will response that it doesn't understand if user input anything other than greeting.</p>
-<h2 id="step-2-bot-can-understand-users-order">Step 2: Bot can understand user's order</h2>
-<p>Add nlu at <em>nlu.yml.</em></p>
-<pre><code># nlu for order a pizza based by keywords
-order:
-  type: keyword
-    options:
-      keywords:
-        pizzaOrder:
-          - pesan
-          - pesen
-          - beli
-          - pesen pizza
-          - pizza dong
-          - pizza
-</code></pre>
 
-<p>now create <strong>order.yml </strong>inside folder flows</p>
-<pre><code>intents:
-  orderCommand:
-    initial: true
-    type: text
-    classifier:
-      nlu: order
-      match: pizzaOrder
+wzxhzdk:11
 
-states:
-  init:
-    initial: true
-    action:
-      - name: pizzaOptions
-      - name: askOptions
-    transitions:
-      init:
-        fallback: true
 
-actions:
-  pizzaOptions:
-    type: text
-    options:
-      text: 'Kami punya pilihan menu:\n 1)Peperoni\n 2)Ronipepe'
+Modify bot.yml
 
-  askOptions:
-    type: text
-    options:
-      text: 'Mau yang mana?'
-</code></pre>
 
-<p>dont forget to modify flows in <strong>bot.yml</strong></p>
-<pre><code>flows:
-    welcome: $include(./flows/welcome.yml)
-    order: $include(./flows/order.yml) #add this line of code, to add order.yml into bot flow
-    fallback: $include(./flows/fallback.yml)
-</code></pre>
+wzxhzdk:12
 
-<p>Now the bot can have this following of conversation:</p>
-<pre><code>$ user: 'Hai'
-- bot: 'Halo pizza bot disini'
-$ user: 'pesan pizza'
-- bot: 'Kami punya pilihan menu:\n 1)Peperoni\n 2)Ronipepe' 
-- bot: 'Mau yang mana?'
-$ user: 'Halo'
-- bot: 'Hai mulu, buruan pesen dong'
-</code></pre>
 
-<p><img src="../img/1.png" alt="Image"></p>
-<h2 id="step-3-modify-the-text-menu-into-carousel">Step 3: Modify the text menu into carousel</h2>
-<p>now modify <strong>order.yml</strong> by adding pizzaOptions in actions</p>
-<pre><code># Example of hard-coded carousel
-pizzaOptions:
-    type: &quot;template&quot;
-    options:
-        type: &quot;carousel&quot;
-        items:
-            - text: 'untuk penggemar bola pepe dan roni'
-              title: 'Pepperoni'
-              thumbnailImageUrl: &lt;https image url&gt;
-              actions:
-                - type: &quot;postback&quot;
-                  label: 'Pepperoni'
-                  payload: 
-                    type: pizza
-                    pizza: pepperoni
-            - text: 'untuk pecinta ayam. Eaaaa'
-              title: 'Chick Lover'
-              thumbnailImageUrl: &lt;https image url&gt;
-              actions:
-                - type: &quot;postback&quot;
-                  label: 'Chick Lover'
-                  payload: 
-                    type: pizza
-                    pizza: chicklover
-</code></pre>
+Now your bot able to tell if user is greeting, bot will response that it doesn't understand if user input anything other than greeting.
 
-<p>Now it should show carousel of menu instead of only text.</p>
-<h3 id="step-31-use-the-input-from-carousel">Step 3.1: Use the input from carousel.</h3>
-<p>New intent needed to be able to catch input from carousel. Which the type is data, and payload content used to identify which carousel is being used (in case if there are more than 1 carousel or other input categorized as type data).</p>
-<p>Add intents at <em>order.yml.</em></p>
-<pre><code>  # This will prevent intent caught by *fallbackIntent* at *fallback.yml*
-  pizzaChosen:
-    initial: true
-    type: data
-    condition: payload.type == 'pizza'
+## Step 2: Bot can understand user's order
 
-  reenter:
-    type: command
-    condition: content == &quot;reenter&quot;
-</code></pre>
+Add nlu at *nlu.yml.*
 
-<p>Add intents at <em>welcome.yml</em></p>
-<pre><code>reenter:
-  type: command
-  condition: content == &quot;reenter&quot; 
-</code></pre>
 
-<p>remove the greet state and modify the init state</p>
-<pre><code>states:
-    init:
-        initial: true
-        transit:
-          context.greetCount: &quot;intent == 'greeting' ? (context.greetCount || 0) + 1 : 0&quot;
-        action:
-            - name: greetWOPerson
-              condition: &quot;!context.greetCount&quot;
-            - name: greetAgain
-              condition: &quot;context.greetCount &gt;= 1&quot;
-        float:
-            fallback: true
-</code></pre>
+wzxhzdk:13
 
-<p>Modify <em>init </em>states and add 2 other states at <em>order.yml.</em></p>
-<pre><code>  init:
-    initial: true
-    transitions:
-      showPizza:
-        condition: &quot;intent == 'orderCommand'&quot;
-      init:
-        fallback: true
 
-  showPizza:
-    action:
-      - name: pizzaOptions
-      - name: askOptions
-    transitions:
-      confirmPizza:
-        condition: &quot;intent == 'pizzaChosen'&quot;
-      showPizza:
-        fallback: true
+now create **order.yml **inside folder flows
 
-  confirmPizza:
-    end: true
-    action:
-      - name: confirmPizza
-    transitions:
-      confirmPizza:
-        fallback: true
-</code></pre>
 
-<p>Add actions di <em>order.yml.</em></p>
-<pre><code>  confirmPizza:
-    type: text
-    options:
-      text: &quot;Jadi benar pesanannya adalah $(payload.pizza)?&quot;
-</code></pre>
+wzxhzdk:14
 
-<p>The bot can now understand the user input from carousel. <strong>payload</strong> is temporary, after some transitions it will have no value stored. later on we need to assign it to a <strong>context</strong>
-<img src="../img/2.png" alt="Image"></p>
-<h2 id="step-4-add-flow-until-confirmation-of-the-the-order">Step 4: Add flow until confirmation of the the order</h2>
-<p>Two state is added in this step, to know how many pizza that the user want to order and confirm if the user already order the right one. After confirmation the state will come back to initial state so the user can start order again.</p>
-<p>Add nlu at <em>nlu.yml</em></p>
-<pre><code>quantity:
-    type: regex
-    options:
-        regex: &quot;[1-9]&quot;
-</code></pre>
 
-<p>Add intents at <em>order.yml</em></p>
-<pre><code>  pizzaQntty: 
-    type: text
-    classifier:
-      nlu: quantity
-    attributes:
-      quantity:
-        nlu: quantity
-</code></pre>
+dont forget to modify flows in **bot.yml**
 
-<p>Add and restructure the states in order.yml</p>
-<pre><code>showPizza:
-    action:
-      - name: pizzaOptions
-      - name: askOptions
-    transitions:
-      pizzaQuantity:
-        condition: &quot;intent == 'pizzaChosen'&quot;
-        mapping: 
-          context.pizza: &quot;payload.pizza&quot; # remember payload.pizza for the whole session
-      showPizza:
-        fallback: true
 
-  pizzaQuantity:
-    action:
-      - name: askQuantity
-    transitions:
-      confirmPizza:
-        condition: &quot;intent == 'pizzaQntty'&quot;
-        mapping:
-          context.quantity: &quot;attributes.quantity&quot;
-          context.answer: &quot;null&quot;
-      pizzaQuantity:
-        fallback: true
+wzxhzdk:15
 
-  confirmPizza:
-    action:
-      - name: confirmPizza
-    transitions:
-      done:
-        fallback: true
-    transit:
-        context.answer: &quot;intent&quot;
 
-  done:
-    end: true
-    action:
-      - name: sayThanks
-        condition: &quot;context.answer == 'yes'&quot;
-      - name: cancelOrder
-        condition: &quot;context.answer == 'no'&quot;
-</code></pre>
+Now the bot can have this following of conversation:
 
-<p>Add and modify actions at order.yml too</p>
-<pre><code> askQuantity:
-    type: text
-    options:
-      text: 'Mau pesan berapa banyak? (Min.1 Max.9)'
 
-  confirmPizza:
-    type: text
-    options:
-      text: &quot;Jadi benar pesanannya adalah $(context.pizza)?&quot;
+wzxhzdk:16
 
-  cancelOrder:
-    type: text
-    options:
-      text: &quot;Baiklah, silahkan pesan lagi di lain waktu&quot;
 
-  sayThanks:
-    type: text
-    options:
-      text: &quot;Terimakasih sudah memesan :)&quot;
-</code></pre>
+<img src="../img/1.png" alt="Image">
 
-<p><img src="../img/3.png" alt="Image"></p>
-<h2 id="step-5-modify-confirmation-answer-to-button">Step 5: Modify confirmation answer to button</h2>
-<p>modify the <strong>order.yml</strong> by adding the yesNoButton in actions</p>
-<pre><code>  yesNoButton:
-    type: template
-    options:
-      type: button
-      items:
-        text: &quot;Benar pesanannya adalah $(context.pizza) sebanyak $(context.quantity)?&quot;
-        actions:
-          - type: postback
-            label: Ya
-            payload:
-              type: confirm
-              confirm: &quot;yes&quot;
-          - type: postback
-            label: Tidak
-            payload:
-              type: confirm
-              confirm: &quot;no&quot;
-</code></pre>
+## Step 3: Modify the text menu into carousel
 
-<h3 id="step-51-use-the-input-from-button">Step 5.1: Use the input From Button</h3>
-<p>Add intent at <em>order.yml</em></p>
-<pre><code>  yesno:
-    type: data
-    condition: payload.type == 'confirm'
-</code></pre>
+now modify **order.yml** by adding pizzaOptions in actions
 
-<p>modify the <strong>confirmPizza</strong> and <strong>init</strong> state</p>
-<pre><code> init:
-    initial: true
-    action:
-      - name: sayThanks
-        condition: &quot;context.answer == 'yes'&quot;
-      - name: cancelOrder
-        condition: &quot;context.answer == 'no'&quot;
-    transitions:
-      showPizza:
-        condition: &quot;intent == 'orderCommand'&quot;
-      init:
-        fallback: true
 
-  confirmPizza:
-    action:
-      - name: yesNoButton
-    transitions:
-      init:
-        fallback: true
-        mapping:
-          context.answer: &quot;payload.confirm&quot;
-    transit:
-        context.answer: &quot;intent&quot;  
-</code></pre>
+wzxhzdk:17
 
-<p>after confirmation, at confirmPizza state it will return to init state and ready for another 'pesan' command.
-<img src="../img/4.png" alt="Image"></p>
-<h2 id="step-6-using-line-sticker-as-bot-response">Step 6: Using LINE Sticker as bot response</h2>
-<p>In this step we want the bot to be able to give response to user with sticker, to identify what sticker will be used the packageId and stickerId is needed as argument in actions.</p>
-<p>add action in <strong>order.yml</strong></p>
-<pre><code>  sayThanksSticker:
-    type: template
-    options:
-    type: sticker
-    items:
-      stickerId: '3'
-      packageId: '1'
-</code></pre>
+Now it should show carousel of menu instead of only text.
 
-<p>modify init state in <strong>order.yml</strong></p>
-<pre><code>  init:
-    initial: true
-    action:
-      - name: sayThanks
-        condition: &quot;context.answer == 'yes'&quot;
-      - name: sayThanksSticker
-        condition: &quot;context.answer == 'yes'&quot;
-      - name: cancelOrder
-        condition: &quot;context.answer == 'no'&quot;
-    transitions:
-      showPizza:
-        condition: &quot;intent == 'orderCommand'&quot;
-      init:
-        fallback: true        
-</code></pre>
+### Step 3.1: Use the input from carousel.
 
-<p><img src="../img/5.png" alt="Image"></p>
-<h2 id="step-7-using-more-dynamic-carousel">Step 7: Using more dynamic carousel</h2>
-<p>In this step we want to create carousel but not each content is written specifically by developer, instead we can use JSON Object as its input.</p>
-<p>Create methods in <strong>order.yml</strong> to simulate carousel which use JSON Object as input. The JSON Object example will be saved at <em>context.arr</em> when transit called <em>jalaninArr</em> method.</p>
-<pre><code>methods:
-  jalaninArr(ctx): &quot;
-      ctx.context.arr = [{'item':'Chicken', 'desc':'chick lover'}, {'item':'Pepperoni', 'desc':'pepe rooney'}];
-      return ctx;
-  &quot;
-</code></pre>
+New intent needed to be able to catch input from carousel. Which the type is data, and payload content used to identify which carousel is being used (in case if there are more than 1 carousel or other input categorized as type data).
 
-<p>In state <em>init</em> at <strong>order.yml</strong>, add <em>transit </em>so there will be <em>context</em> which contain JSON Object example</p>
-<pre><code>    transit: jalaninArr
-</code></pre>
 
-<p>Add <em>actions </em>at <strong>order.yml</strong>, dynamic carousel actions which use JSON Object from methods <em>jalaninArr</em></p>
-<pre><code>  pizzaOptionsDynamic:
-    type: template
-    options:
-      type: carousel
-      data: $(context.arr) # [{'item':&quot;Chicken&quot;, 'desc':&quot;chick lover&quot;}, {'item':&quot;Pepperoni&quot;, 'desc':&quot;pepe rooney&quot;}]
-      template:
-        text: $[desc]
-        title: $[item]
-        actions:
-          -  type: postback
-             label: $[item]
-             payload:
-               type: pizza
-               pizza: $[item]
-</code></pre>
+Add intents at *order.yml.*
 
-<p>In state <em>showPizza </em>at <strong>order.yml</strong>, change action from <em>pizzaOptions </em>to <em>pizzaOptionsDynamic</em></p>
-<pre><code>showPizza:
-    action:
-      - name: pizzaOptionsDynamic
-      - name: askOptions
-    transitions:
-      pizzaQuantity:
-        condition: &quot;intent == 'pizzaChosen'&quot;
-        mapping: 
-          context.pizza: &quot;payload.pizza&quot;
-      showPizza:
-        fallback: true
-</code></pre>
+
+wzxhzdk:18
+
+
+Add intents at *welcome.yml*
+
+
+wzxhzdk:19
+
+
+remove the greet state and modify the init state
+
+
+wzxhzdk:20
+
+
+Modify *init *states and add 2 other states at *order.yml.*
+
+
+wzxhzdk:21
+
+
+Add actions di *order.yml.*
+
+
+wzxhzdk:22
+
+
+The bot can now understand the user input from carousel. **payload** is temporary, after some transitions it will have no value stored. later on we need to assign it to a **context**
+<img src="../img/2.png" alt="Image">
+
+## Step 4: Add flow until confirmation of the the order
+
+Two state is added in this step, to know how many pizza that the user want to order and confirm if the user already order the right one. After confirmation the state will come back to initial state so the user can start order again.
+
+Add nlu at *nlu.yml*
+
+
+wzxhzdk:23
+
+
+Add intents at *order.yml*
+
+
+wzxhzdk:24
+
+
+Add and restructure the states in order.yml
+
+
+wzxhzdk:25
+
+
+Add and modify actions at order.yml too
+
+
+wzxhzdk:26
+
+<img src="../img/3.png" alt="Image">
+
+## Step 5: Modify confirmation answer to button
+
+modify the **order.yml** by adding the yesNoButton in actions
+
+
+wzxhzdk:27
+
+
+### Step 5.1: Use the input From Button
+
+Add intent at *order.yml*
+
+
+wzxhzdk:28
+
+
+modify the **confirmPizza** and **init** state
+
+
+wzxhzdk:29
+
+
+after confirmation, at confirmPizza state it will return to init state and ready for another 'pesan' command.
+<img src="../img/4.png" alt="Image">
+## Step 6: Using LINE Sticker as bot response
+
+In this step we want the bot to be able to give response to user with sticker, to identify what sticker will be used the packageId and stickerId is needed as argument in actions.
+
+add action in **order.yml**
+
+
+wzxhzdk:30
+
+
+modify init state in **order.yml**
+
+
+wzxhzdk:31
+
+
+<img src="../img/5.png" alt="Image">
+## Step 7: Using more dynamic carousel
+
+In this step we want to create carousel but not each content is written specifically by developer, instead we can use JSON Object as its input.
+
+Create methods in **order.yml** to simulate carousel which use JSON Object as input. The JSON Object example will be saved at *context.arr* when transit called *jalaninArr* method.
+
+
+wzxhzdk:32
+
+
+In state *init* at **order.yml**, add *transit *so there will be *context* which contain JSON Object example
+
+
+wzxhzdk:33
+
+
+Add *actions *at **order.yml**, dynamic carousel actions which use JSON Object from methods *jalaninArr*
+
+
+wzxhzdk:34
+
+
+In state *showPizza *at **order.yml**, change action from *pizzaOptions *to *pizzaOptionsDynamic*
+
+
+wzxhzdk:35
+
+
+ -->
                 <br><hr>
                 <p class="center">Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
             </div>
