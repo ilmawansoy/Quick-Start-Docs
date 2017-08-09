@@ -70,6 +70,7 @@ body > div.container > div > div.col.s9.m9.main-content > p > img
 body > div.container > div > div.col.s9.m9.main-content > p > span
 {
     font-weight: bold;
+
     color: orange;
 }
 
@@ -100,25 +101,62 @@ body > div.container > div > div.col.s9.m9.main-content > ul > li > span
 {
     display: block;
 
-    width: 650px !important; 
+    width: 650px !important;
     margin-top: 10px;
     margin-right: auto;
     margin-bottom: 10px;
-    margin-left: auto;  
+    margin-left: auto;
 }
 
 body > div.container > div > div.col.s9.m9.main-content > p:nth-child(5) > a > img
 {
     display: block;
 
-    width: 400px !important; 
+    width: 400px !important;
     margin-top: 10px;
     margin-right: auto;
     margin-bottom: 10px;
-    margin-left: auto;  
+    margin-left: auto;
 }
 
 body > div.navbar-fixed > nav > div > ul.right > .disabled > a
 {
     color: #2764c6;
+}
+/*
+html
+{
+    background: url('http://kata.ai/images/00/biglines-left.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-attachment: fixed;
+}*/
+#bg
+{
+    position: fixed;
+    z-index: -3;
+    top: 70%;
+    right: 100%;
+}
+#bg img
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    min-width: 50%;
+    min-height: 50%;
+    margin: auto;
+
+    -webkit-transform: scaleX(-1);
+       -moz-transform: scaleX(-1);
+         -o-transform: scaleX(-1);
+            transform: scaleX(-1);
+
+    opacity: .6;
+
+        filter: FlipH;
+    -ms-filter: 'FlipH';
 }
