@@ -135,8 +135,8 @@ html
 {
     position: fixed;
     z-index: -3;
-    top: 70%;
-    right: 100%;
+    top: 50%;
+    right: 125%;
 }
 #bg img
 {
@@ -146,17 +146,11 @@ html
     bottom: 0;
     left: 0;
 
-    min-width: 50%;
-    min-height: 50%;
+    min-width: 30%;
+    min-height: 30%;
     margin: auto;
 
-    -webkit-transform: scaleX(-1);
-       -moz-transform: scaleX(-1);
-         -o-transform: scaleX(-1);
-            transform: scaleX(-1);
-
-    opacity: .3;
-
-        filter: FlipH;
-    -ms-filter: 'FlipH';
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
 }
