@@ -792,7 +792,7 @@ actions:
 Remove all actions from the <em>init</em> state at <strong>order.yml</strong>, and move those actions to new state <em>done</em>, and add end of flows there.</p>
 <pre><code>  init:
     initial:
-    ~~action~~~~:
+    action:
       - name: sayThanks
         condition: &quot;context.answer == 'yes'&quot;
       - name: sayThanksSticker
