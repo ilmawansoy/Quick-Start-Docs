@@ -150,7 +150,9 @@ html
     min-height: 30%;
     margin: auto;
 
-    -ms-transform: rotate(90deg); /* IE 9 */
     -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-    transform: rotate(90deg);
+        -ms-transform: rotate(90deg); /* IE 9 */
+            transform: rotate(90deg);
+
+    opacity: .7;
 }

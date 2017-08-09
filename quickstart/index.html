@@ -133,11 +133,11 @@
             <li class="second-level"><a href="#step-8-change-state-without-input-from-user">Step 8: Change state without input from user</a></li>
             
         
-            <li class="second-level"><a href="#step-8-using-api-actions-and-global-metadata">Step 8: Using API actions, and global metadata</a></li>
+            <li class="second-level"><a href="#step-9-using-api-actions-and-global-metadata">Step 9: Using API actions, and global metadata</a></li>
             
-                <li class="third-level"><a href="#step-81-global-metadata">Step 8.1: Global metadata</a></li>
+                <li class="third-level"><a href="#step-91-global-metadata">Step 9.1: Global metadata</a></li>
             
-                <li class="third-level"><a href="#step-82-api-actions">Step 8.2: api actions</a></li>
+                <li class="third-level"><a href="#step-92-api-actions">Step 9.2: api actions</a></li>
             
         
     
@@ -846,8 +846,8 @@ Command actions added here, and will be done only if the user confirm the order 
 <p>Look back up to <strong>saveData.yml</strong>, pay attention to initial intent which have condition “<em>content == 'saveData'</em> ”<em>. </em>At <strong>order.yml</strong> new command actions, there is options which have the value of 'saveData'. This value will be like an input from user and can be retrieved at 'content'. Just like when intent caught something, the value can be retrieved at 'intent'.
 <img alt="Image" src="https://yesbossnow.quip.com/-/blob/GQRAAAloz86/6oxVCPuzll18y5soi5ql7g" />
 Because <strong>saveData.yml </strong>and <strong>order.yml</strong> flows has ended, the float state at <strong>welcome.yml</strong> will do its action which is greet user from the start.</p>
-<h2 id="step-8-using-api-actions-and-global-metadata">Step 8: Using API actions, and global metadata</h2>
-<h3 id="step-81-global-metadata">Step 8.1: Global metadata</h3>
+<h2 id="step-9-using-api-actions-and-global-metadata">Step 9: Using API actions, and global metadata</h2>
+<h3 id="step-91-global-metadata">Step 9.1: Global metadata</h3>
 <p>Previously we know 'context', need to be initialized metadata that can be used for the whole session, but only for the flow where it's created. To use metadata that can be used globally, at every flow, then the value need to be saved at metadata named 'data'.</p>
 <p>For example we want to use 'pizza' and the 'quantity' from <strong>order.yml </strong>to be used at<strong> saveData.yml</strong> too. Add enter at 'done' <em>state </em>in <strong>order.yml.</strong>   </p>
 <pre><code>  done:
@@ -867,7 +867,7 @@ Because <strong>saveData.yml </strong>and <strong>order.yml</strong> flows has e
 </code></pre>
 
 <p>Now 'data.quantity' and 'data.pizza' can be accessed globally.</p>
-<h3 id="step-82-api-actions">Step 8.2: api actions</h3>
+<h3 id="step-92-api-actions">Step 9.2: api actions</h3>
 <p>In this step let's assume:</p>
 <ul>
 <li>There is an API service to insert into local database with URI: http://b11f7ca6.ngrok.io/api/v1/insert</li>
